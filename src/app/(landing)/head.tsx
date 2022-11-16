@@ -1,6 +1,6 @@
 import React from "react";
 
-const RootHead = () => {
+const LandingHead = () => {
   return (
     <>
       <title>Broaden Agency</title>
@@ -10,4 +10,4 @@ const RootHead = () => {
   );
 };
 
-export default RootHead;
+export default LandingHead;
