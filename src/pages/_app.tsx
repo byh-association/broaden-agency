@@ -4,11 +4,12 @@ import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 import { trpc } from "../utils/trpc";
 import { Noto_Sans as NotoSans } from "@next/font/google";
+import MainContainer from "../components/container";
 
 const notoSans = NotoSans({
   weight: ["400", "500", "700"],
   variable: "--font-noto_sans",
-  subsets: ['latin']
+  subsets: ["latin"],
 });
 
 const MyApp: AppType<{ session: Session | null }> = ({
@@ -18,7 +19,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <div className={`${notoSans.variable} font-sans`}>
-        <Component {...pageProps} />
+        <MainContainer>
+          <Component {...pageProps} />
+        </MainContainer>
       </div>
     </SessionProvider>
   );
