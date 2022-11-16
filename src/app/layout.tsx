@@ -1,6 +1,7 @@
 import React from "react";
-import Providers from "./providers";
 import { Noto_Sans as NotoSans } from "@next/font/google";
+
+import Providers from "./providers";
 
 import "../styles/globals.css";
 
