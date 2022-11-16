@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import React from "react";
 import HeroSectionIllustration from "@assets/hero-illustration.svg";
+import RotatingText from "src/app/components/rotating-text";
 
 const LandingHeroSection: FC = () => {
   return (
@@ -8,7 +9,7 @@ const LandingHeroSection: FC = () => {
       {/* Left text content */}
       <div className="flex max-w-[560px] flex-col space-y-11">
         <div className="flex flex-col">
-          <h1 className="mb-[-6px] text-8xl font-bold text-blue-500">Build</h1>
+          <RotatingText words={["Build", "Release", "Maintain"]}></RotatingText>
           <h1 className="text-8xl font-bold text-slate-700">
             your dream app with us
           </h1>
