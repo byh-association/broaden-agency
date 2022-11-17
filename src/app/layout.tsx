@@ -9,6 +9,7 @@ const notoSans = NotoSans({
   weight: ["400", "500", "700"],
   variable: "--font-noto_sans",
   subsets: ["latin"],
+  fallback: ["auto"],
 });
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
