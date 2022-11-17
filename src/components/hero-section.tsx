@@ -9,7 +9,11 @@ const LandingHeroSection: FC = () => {
       {/* Left text content */}
       <div className="flex max-w-[560px] flex-col space-y-11">
         <div className="flex flex-col">
-          <RotatingText words={["Build", "Release", "Maintain"]}></RotatingText>
+          <RotatingText
+            heightClass="h-24"
+            tickDuration={1200}
+            words={["Build", "Release", "Maintain", "Publish"]}
+          ></RotatingText>
           <h1 className="text-8xl font-bold text-slate-700">
             your dream app with us
           </h1>

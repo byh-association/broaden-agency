@@ -1,32 +1,45 @@
+`use client`;
+
 import type { FC } from "react";
 import React from "react";
 
+const WORDS_REQUIRED_COUNT = 4;
+
 interface Props {
   /**
-   * Delay in `ms` between word changes
+   * Duration in `ms` how long one word will be visible
    */
-  tickDelay?: number;
-  /**
-   * Delay between animation loops in `ms`
-   */
-  loopDelay?: number;
+  tickDuration?: number;
   /**
    * Words that will be animated in cycle
    */
   words: string[];
+  heightClass: string;
 }
 
-const RotatingText: FC<Props> = ({ words }) => {
+const RotatingText: FC<Props> = ({
+  words,
+  tickDuration = 2000,
+  heightClass,
+}) => {
+  if (words.length !== WORDS_REQUIRED_COUNT) {
+    throw Error(
+      `Wrong count of words. Expected: ${WORDS_REQUIRED_COUNT}, get: ${words.length}`
+    );
+  }
+  const animationDuration = `${(tickDuration * words.length) / 1000}s`;
+  const loopedWords = [words[words.length - 1], ...words];
   return (
-    <div className="relative">
-      {words.map((word) => {
+    <div className={`overflow-hidden ${heightClass}`}>
+      {loopedWords.map((word) => {
         return (
-          <h1
+          <span
             key={`rotating_text-${word}`}
-            className="opacity-1 absolute left-0 top-0 text-8xl font-bold text-blue-500"
+            style={{ animationDuration, animationDelay: "2s" }}
+            className={`block ${heightClass} animate-[textRotating_1s_linear_infinite] text-8xl font-bold text-blue-500`}
           >
             {word}
-          </h1>
+          </span>
         );
       })}
     </div>
