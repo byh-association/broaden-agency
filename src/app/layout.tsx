@@ -1,6 +1,7 @@
 import React from "react";
-import Providers from "./providers";
 import { Noto_Sans as NotoSans } from "@next/font/google";
+
+import Providers from "./providers";
 
 import "../styles/globals.css";
 
@@ -8,6 +9,7 @@ const notoSans = NotoSans({
   weight: ["400", "500", "700"],
   variable: "--font-noto_sans",
   subsets: ["latin"],
+  fallback: ["auto"],
 });
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
