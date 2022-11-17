@@ -1,9 +1,6 @@
 import type { FC } from "react";
 import React from "react";
-import Facebook from "@assets/icons/facebook.svg";
-import Instagram from "@assets/icons/instagram.svg";
-import LinkedIn from "@assets/icons/linkedin.svg";
-import Twitter from "@assets/icons/twitter.svg";
+import Image from "next/image";
 
 import LandingFooterLink from "./link";
 
@@ -16,16 +13,16 @@ const LandingFooter: FC = () => {
         Logo
         <div className="flex space-x-3">
           <LandingFooterLink inNewTab href="https://facebook.com">
-            <Facebook />
+            <Image src="/icons/facebook.svg" alt="Our Facebook group" />
           </LandingFooterLink>
           <LandingFooterLink inNewTab href="https://instagram.com">
-            <Instagram />
+            <Image src="/icons/instagram.svg" alt="Our Instagram page" />
           </LandingFooterLink>
           <LandingFooterLink inNewTab href="https://linkedin.com">
-            <LinkedIn />
+            <Image src="/icons/linkedin.svg" alt="Our LinkedIn page" />
           </LandingFooterLink>
           <LandingFooterLink inNewTab href="https://twitter.com">
-            <Twitter />
+            <Image src="/icons/twitter.svg" alt="Our Twitter page" />
           </LandingFooterLink>
         </div>
       </div>
