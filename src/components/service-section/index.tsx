@@ -8,7 +8,7 @@ const ServiceSection = () => {
         What we are delivering
       </h4>
 
-      <div className="grid gap-3 md:grid-flow-col md:grid-rows-6 lg:grid-rows-4">
+      <div className="grid gap-4 md:grid-flow-col md:grid-rows-6 lg:grid-rows-4">
         {serviceCardsData.map((data) => (
           <ServiceCard {...data} key={data.key} />
         ))}
