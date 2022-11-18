@@ -15,6 +15,12 @@
   .glow-str {
     @apply animate-pulse blur-[200px];
   }
+  .shadow-card {
+    @apply drop-shadow-[0_4px_10px_rgba(228,228,231,0.75)];
+  }
+  .shadow-section {
+    @apply drop-shadow-[0_4px_30px_rgba(17,24,39,0.5)];
+  }
 }
 
 * {
