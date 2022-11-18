@@ -5,6 +5,7 @@ import ContactSection from "src/components/contant-section";
 import LandingFooter from "src/components/footer";
 import Header from "src/components/header";
 import LandingHeroSection from "src/components/hero-section";
+import LandingReviewSection from "src/components/review-section";
 import ServiceSection from "src/components/service-section";
 
 const Home: NextPage = () => {
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
           <main className="my-24 flex w-full flex-col gap-y-24">
             <LandingHeroSection />
             <ServiceSection />
+            <LandingReviewSection />
             <ContactSection />
           </main>
           <LandingFooter />
