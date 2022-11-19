@@ -13,16 +13,36 @@ const LandingFooter: FC = () => {
         Logo
         <div className="flex space-x-3">
           <LandingFooterLink inNewTab href="https://facebook.com">
-            <Image src="/icons/facebook.svg" alt="Our Facebook group" />
+            <Image
+              src="/icons/facebook.svg"
+              alt="Our Facebook group"
+              width={16}
+              height={16}
+            />
           </LandingFooterLink>
           <LandingFooterLink inNewTab href="https://instagram.com">
-            <Image src="/icons/instagram.svg" alt="Our Instagram page" />
+            <Image
+              src="/icons/instagram.svg"
+              alt="Our Instagram page"
+              width={16}
+              height={16}
+            />
           </LandingFooterLink>
           <LandingFooterLink inNewTab href="https://linkedin.com">
-            <Image src="/icons/linkedin.svg" alt="Our LinkedIn page" />
+            <Image
+              src="/icons/linkedin.svg"
+              alt="Our LinkedIn page"
+              width={16}
+              height={16}
+            />
           </LandingFooterLink>
           <LandingFooterLink inNewTab href="https://twitter.com">
-            <Image src="/icons/twitter.svg" alt="Our Twitter page" />
+            <Image
+              src="/icons/twitter.svg"
+              alt="Our Twitter page"
+              width={16}
+              height={16}
+            />
           </LandingFooterLink>
         </div>
       </div>
