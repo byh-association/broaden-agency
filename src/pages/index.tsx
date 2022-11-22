@@ -4,6 +4,7 @@ import MainContainer from "src/components/container";
 import LandingFooter from "src/components/footer";
 import Header from "src/components/header";
 import LandingHeroSection from "src/components/hero-section";
+import ServiceSection from "src/components/service-section";
 
 const Home: NextPage = () => {
   return (
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
           <Header />
           <main className="my-24 flex w-full flex-col gap-y-24">
             <LandingHeroSection />
+            <ServiceSection />
           </main>
           <LandingFooter />
         </MainContainer>
