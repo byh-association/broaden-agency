@@ -24,10 +24,10 @@ const RotatingText: FC<Props> = ({ words, tickDuration = 2000 }) => {
   const loopedWords = [words[words.length - 1], ...words];
   return (
     <div className="mb-[-4px] h-16 overflow-hidden md:h-24">
-      {loopedWords.map((word) => {
+      {loopedWords.map((word, index) => {
         return (
           <span
-            key={`rotating_text-${word}`}
+            key={`rotating_text-${word}-${index}`}
             style={{ animationDuration, animationDelay: "2s" }}
             className="block  animate-[textRotating_1s_linear_infinite] text-6xl font-bold text-blue-500 md:text-8xl"
           >

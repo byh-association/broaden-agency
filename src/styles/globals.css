@@ -21,6 +21,13 @@
   .shadow-section {
     @apply drop-shadow-[0_4px_30px_rgba(17,24,39,0.5)];
   }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  .scrollbar-hidden {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 * {
