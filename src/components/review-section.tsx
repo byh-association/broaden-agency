@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import type { ReviewCardContent } from "./review-card";
 import ReviewCard from "./review-card";
 
-const mock: ReviewCardContent[] = [
+const reviewsData: ReviewCardContent[] = [
   {
     id: "1",
     title: "Friendly and responsible team 1",
@@ -77,25 +77,23 @@ const DESKTOP_REVIEWS_PER_PAGE = 2;
 const SLIDER_TICK_DURATION = 8000;
 
 const LandingReviewSection = () => {
-  const reviews = mock;
+  const intervalRef = useRef<NodeJS.Timeout>();
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  if (reviews.length % 2 !== 0) {
+  if (reviewsData.length % 2 !== 0) {
     throw new Error("The reviews count must be even for correct displaying");
   }
 
   const desktopArray = useMemo(() => {
-    const copy = [...reviews];
+    const copy = [...reviewsData];
     const result = [];
     for (let i = 0; i < copy.length; i += DESKTOP_REVIEWS_PER_PAGE) {
       const chunk = copy.slice(i, i + DESKTOP_REVIEWS_PER_PAGE);
       result.push(chunk);
     }
     return result;
-  }, [reviews]);
-
-  const intervalRef = useRef<NodeJS.Timeout>();
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [currentPage, setCurrentPage] = useState(0);
+  }, []);
 
   const scrollSlide = useCallback((arrayLength: number, to: number) => {
     const current = carouselRef.current;

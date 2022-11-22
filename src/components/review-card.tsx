@@ -27,11 +27,8 @@ const ReviewCard: FC<ReviewCardContent> = ({ title, body, author }) => {
           <Image
             sizes="52px"
             src={author.avatarURL}
-            style={{
-              objectFit: "cover",
-            }}
             fill
-            className="rounded-full"
+            className="rounded-full object-cover"
             alt={`${author.name}'s photo`}
           />
         </div>
