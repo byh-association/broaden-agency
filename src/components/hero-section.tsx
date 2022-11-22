@@ -36,11 +36,11 @@ const LandingHeroSection: FC = () => {
         </div>
       </div>
       {/* Hero section illustration */}
-      <div className="hidden md:block">
+      <div className="relative hidden h-[388px] w-[514px] md:block">
         <Image
           src="/landing/hero-illustration.svg"
-          width={514}
-          height={388}
+          fill
+          sizes="(max-width: 640px) 0px"
           alt="Building modern application illustration"
           priority
         />

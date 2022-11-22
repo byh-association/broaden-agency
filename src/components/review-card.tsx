@@ -25,6 +25,7 @@ const ReviewCard: FC<ReviewCardContent> = ({ title, body, author }) => {
         </div>
         <div className="relative h-[52px] w-[52px]">
           <Image
+            sizes="52px"
             src={author.avatarURL}
             style={{
               objectFit: "cover",

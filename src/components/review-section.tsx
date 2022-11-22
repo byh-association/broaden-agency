@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import React, { useMemo } from "react";
 
 import type { ReviewCardContent } from "./review-card";
@@ -74,7 +74,7 @@ const mock: ReviewCardContent[] = [
 ];
 
 const DESKTOP_REVIEWS_PER_PAGE = 2;
-const SLIDER_TICK_DURATION = 4000;
+const SLIDER_TICK_DURATION = 8000;
 
 const LandingReviewSection = () => {
   const reviews = mock;
@@ -93,91 +93,90 @@ const LandingReviewSection = () => {
     return result;
   }, [reviews]);
 
+  const intervalRef = useRef<NodeJS.Timeout>();
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentPage] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPage((prev) => {
-        const nextStep = prev + 1;
-        if (nextStep === desktopArray.length) return 0;
-        return nextStep;
-      });
-    }, SLIDER_TICK_DURATION);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [desktopArray.length]);
+  const scrollSlide = useCallback((arrayLength: number, to: number) => {
+    const current = carouselRef.current;
+    if (!current) return;
+    const fullWidth = current.scrollWidth;
+    const slideStartPoint = (fullWidth / arrayLength) * to;
+    carouselRef.current?.scrollTo({
+      behavior: "smooth",
+      left: slideStartPoint,
+    });
+    setCurrentPage(to);
+    return;
+  }, []);
 
-  const marginLeftOffset = useMemo(() => {
-    return `-${currentPage * 100}%`;
-  }, [currentPage]);
+  const intervalCallback = useCallback(() => {
+    const nextPage =
+      currentPage + 1 === desktopArray.length ? 0 : currentPage + 1;
+    scrollSlide(desktopArray.length, nextPage);
+  }, [currentPage, desktopArray, scrollSlide]);
+
+  const setCarouselInterval = useCallback(() => {
+    intervalRef.current = setInterval(intervalCallback, SLIDER_TICK_DURATION);
+  }, [intervalCallback]);
+
+  const clearCarouselInterval = useCallback(() => {
+    intervalRef.current && clearInterval(intervalRef.current);
+  }, []);
+
+  useEffect(() => {
+    setCarouselInterval();
+    return clearCarouselInterval;
+  }, [clearCarouselInterval, setCarouselInterval]);
 
   return (
     <section className="flex w-full flex-col items-center">
-      <h4 className="text-3xl font-bold text-slate-700">
+      <h4 className="mb-10 text-3xl font-bold text-slate-700">
         What do they say about us?
       </h4>
       <div className="w-full">
-        {/* Desktop layout */}
-        <div className="flex flex-col gap-y-9">
+        <div
+          className="flex flex-col gap-y-9"
+          onMouseEnter={clearCarouselInterval}
+          onMouseLeave={setCarouselInterval}
+        >
           {/* Carousel */}
-          <div className="snap-x snap-mandatory overflow-hidden scroll-smooth">
-            <div
-              style={{
-                width: `${100 * desktopArray.length}%`,
-              }}
-              className="hidden p-4 sm:flex"
-            >
-              {desktopArray.map((block, index) => (
-                <div
-                  style={{
-                    transform: `translateX(${marginLeftOffset})`,
-                    transition: "all 0.5s ease-in-out",
-                  }}
-                  key={`desktop_review_block-${index}`}
-                  className="flex flex-col gap-x-4 gap-y-4 overflow-hidden p-4"
-                >
-                  {block.map((review) => (
-                    <div
-                      key={`desktop_review_card-${review.id}`}
-                      className="w-full"
-                    >
-                      <ReviewCard {...review} />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+          <div
+            ref={carouselRef}
+            className="scrollbar-hidden flex snap-x snap-mandatory overflow-auto"
+          >
+            {/* Block */}
+            {desktopArray.map((block, index) => (
+              <div
+                key={`desktop_review_block-${index}`}
+                className="flex min-w-full snap-start flex-col gap-4 p-4 sm:flex-row"
+              >
+                {block.map((review) => (
+                  <div
+                    key={`desktop_review_card-${review.id}`}
+                    className="w-full"
+                  >
+                    <ReviewCard {...review} />
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
           {/* Dots */}
-          <div className="flex w-full justify-center">
+          <div className="hidden w-full justify-center lg:flex">
             <div className="flex gap-x-3">
-              {desktopArray.map((_, index) => (
+              {desktopArray.map((_, index, arr) => (
                 <div
                   key={`desktop_review_dot-${index}`}
                   className={`h-4 w-4 cursor-pointer rounded-full bg-zinc-200 ${
                     index === currentPage && "border-2 border-slate-700"
                   }`}
-                  onClick={() => setCurrentPage(index)}
+                  onClick={() => scrollSlide(arr.length, index)}
                 />
               ))}
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Mobile layout */}
-      <div
-        style={{
-          width: `${100 * reviews.length}%`,
-        }}
-        className="flex w-full overflow-auto sm:hidden"
-      >
-        {reviews.map((review) => (
-          <div key={`mobile_review_card-${review.id}`} className="w-full">
-            <ReviewCard {...review} />
-          </div>
-        ))}
       </div>
     </section>
   );
