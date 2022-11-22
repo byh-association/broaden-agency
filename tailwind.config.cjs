@@ -12,25 +12,25 @@ module.exports = {
       keyframes: {
         textRotating: {
           "10%": {
-            transform: "translateY(-104%)",
+            transform: "translateY(-100%)",
           },
           "25%": {
             transform: "translateY(-100%)",
           },
           "35%": {
-            transform: "translateY(-204%)",
+            transform: "translateY(-200%)",
           },
           "50%": {
             transform: "translateY(-200%)",
           },
           "60%": {
-            transform: "translateY(-304%)",
+            transform: "translateY(-300%)",
           },
           "75%": {
             transform: "translateY(-300%)",
           },
           "85%": {
-            transform: "translateY(-404%)",
+            transform: "translateY(-400%)",
           },
           "100%": {
             transform: "translateY(-400%)",

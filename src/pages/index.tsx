@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import MainContainer from "src/components/container";
+import ContactSection from "src/components/contant-section";
 import LandingFooter from "src/components/footer";
 import Header from "src/components/header";
 import LandingHeroSection from "src/components/hero-section";
@@ -20,6 +21,7 @@ const Home: NextPage = () => {
           <main className="my-24 flex w-full flex-col gap-y-24">
             <LandingHeroSection />
             <ServiceSection />
+            <ContactSection />
           </main>
           <LandingFooter />
         </MainContainer>

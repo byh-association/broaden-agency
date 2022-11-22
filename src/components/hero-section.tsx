@@ -13,11 +13,10 @@ const LandingHeroSection: FC = () => {
       <div className="flex max-w-[560px] flex-col space-y-11">
         <div className="flex flex-col">
           <RotatingText
-            heightClass="h-24"
-            tickDuration={2000}
+            tickDuration={1500}
             words={["Build", "Release", "Maintain", "Publish"]}
           />
-          <h1 className="text-8xl font-bold text-slate-700">
+          <h1 className="text-6xl font-bold text-slate-700 md:text-8xl">
             your dream app with us
           </h1>
         </div>
@@ -37,7 +36,7 @@ const LandingHeroSection: FC = () => {
         </div>
       </div>
       {/* Hero section illustration */}
-      <div>
+      <div className="hidden md:block">
         <Image
           src="/landing/hero-illustration.svg"
           width={514}
@@ -48,8 +47,8 @@ const LandingHeroSection: FC = () => {
       </div>
 
       {/* Glow effects */}
-      <div className="glow-str absolute top-[180px] left-[-169px] h-64 w-64 rounded-full bg-blue-500"></div>
-      <div className="glow-str absolute top-[-49px] left-[295px] h-64 w-64 rounded-full bg-indigo-900"></div>
+      <div className="glow-str absolute top-[180px] left-[-169px] hidden h-64 w-64 rounded-full bg-blue-500 md:block"></div>
+      <div className="glow-str absolute top-[-49px] left-[295px] hidden h-64 w-64 rounded-full bg-indigo-900 md:block"></div>
       <div className="glow-str absolute top-[112px] right-[154px] h-64 w-64 rounded-full bg-gray-900"></div>
     </section>
   );
