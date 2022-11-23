@@ -1,0 +1,59 @@
+---
+import { getRandomGradient } from "./get-random-gradient";
+
+const WORDS_REQUIRED_COUNT = 4;
+
+type Props = {
+  /**
+   * Duration in `ms` how long one word will be visible
+   */
+  tickDuration: number;
+  /**
+   * Words that will be animated in cycle
+   */
+  words: string[];
+};
+
+const { words, tickDuration } = Astro.props;
+
+if (words.length !== WORDS_REQUIRED_COUNT) {
+  throw Error(
+    `Wrong count of words. Expected: ${WORDS_REQUIRED_COUNT}, get: ${words.length}`
+  );
+}
+
+const animationDuration = `${(tickDuration * words.length) / 1000}s`;
+const loopedWords = [words[words.length - 1], ...words];
+
+const wordToGradient: Record<string, string> = {};
+
+const getMyGradient = (key: string): string => {
+  const candidate = wordToGradient[key];
+  if (!candidate) {
+    let color = getRandomGradient();
+    const existingGradients = Object.values(wordToGradient);
+    while (existingGradients.includes(color)) {
+      color = getRandomGradient();
+    }
+    wordToGradient[key] = color;
+    return color;
+  }
+  return candidate;
+};
+---
+
+<div class="mb-[-4px] flex h-16 flex-col items-center overflow-hidden md:h-24">
+  {
+    loopedWords.map((word, index) => {
+      const gradient = getMyGradient(word);
+      return (
+        <span
+          style={{ animationDuration, animationDelay: "2s" }}
+          class={`block animate-[textRotating_1s_linear_infinite] text-center text-6xl font-bold text-transparent md:text-8xl ${gradient} bg-clip-text`}
+        >
+          {word}
+        </span>
+      );
+    })
+  }
+</div>

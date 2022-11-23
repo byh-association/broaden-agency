@@ -52,6 +52,9 @@
   .gradient-pink-purple {
     @apply bg-gradient-to-r from-[#9D50BB] to-[#6E48AA];
   }
+  .hero-section-gradient {
+    @apply bg-gradient-to-b from-gray-900 to-[#1B2230];
+  }
 }
 
 * {
