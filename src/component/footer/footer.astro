@@ -1,0 +1,55 @@
+---
+import FooterLink from "./footer-link.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="flex w-full flex-col space-y-4 py-7">
+  <div class="flex w-full justify-between">
+    Logo
+    <div class="flex space-x-3">
+      <FooterLink inNewTab href="https://facebook.com">
+        <img
+          src="/icons/facebook.svg"
+          alt="Our Facebook group"
+          width={16}
+          height={16}
+        />
+      </FooterLink>
+      <FooterLink inNewTab href="https://instagram.com">
+        <img
+          src="/icons/instagram.svg"
+          alt="Our Instagram page"
+          width={16}
+          height={16}
+        />
+      </FooterLink>
+      <FooterLink inNewTab href="https://linkedin.com">
+        <img
+          src="/icons/linkedin.svg"
+          alt="Our LinkedIn page"
+          width={16}
+          height={16}
+        />
+      </FooterLink>
+      <FooterLink inNewTab href="https://twitter.com">
+        <img
+          src="/icons/twitter.svg"
+          alt="Our Twitter page"
+          width={16}
+          height={16}
+        />
+      </FooterLink>
+    </div>
+  </div>
+  <div class="flex w-full justify-between">
+    <p class="text-xs text-slate-700">
+      Copyright © {currentYear} Broaden Association. All rights reserved.
+    </p>
+    <div class="flex space-x-6">
+      <FooterLink href="/faq">FAQ</FooterLink>
+      <FooterLink href="/privacyPolicy">Privacy Policy</FooterLink>
+      <FooterLink href="/termsOfUse">Terms of Use</FooterLink>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  href: string;
+  inNewTab?: boolean;
+}
+
+const { href, inNewTab } = Astro.props;
+---
+
+<a
+  class="text-xs font-bold text-slate-700 hover:underline"
+  href={href}
+  target={inNewTab ? "_blank" : undefined}
+>
+  <slot />
+</a>

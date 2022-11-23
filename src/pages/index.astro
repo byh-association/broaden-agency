@@ -1,0 +1,18 @@
+---
+import ContactSection from "../component/contact-section/contact-section.astro";
+import HeroSection from "../component/hero-section/hero-section.astro";
+import ReviewSection from "../component/review-section/review-section.astro";
+import ServiceSection from "../component/service-section/service-section.astro";
+import LandingLayout from "../layouts/landing-layout.astro";
+
+const DESCRIPTION = "Create your dream idea with us";
+const TAGS = ["agency", "service", "landing"];
+const TITLE = "Broaden agency";
+---
+
+<LandingLayout description={DESCRIPTION} tags={TAGS} title={TITLE}>
+  <HeroSection />
+  <ServiceSection />
+  <ReviewSection />
+  <ContactSection />
+</LandingLayout>

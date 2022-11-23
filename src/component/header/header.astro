@@ -1,0 +1,30 @@
+---
+import ArrowRight from "astro-heroicons/outline/ArrowRight.astro";
+import Calculator from "astro-heroicons/outline/Calculator.astro";
+import Menu from "astro-heroicons/solid/Bars3.astro";
+---
+
+<header class="flex w-full items-center justify-between py-3">
+  <span class="flex h-12 items-center text-base text-gray-900"> Broaden</span>
+
+  <Menu class="flex h-7 w-7 cursor-pointer sm:hidden" />
+
+  <div class="hidden items-center space-x-4 sm:flex">
+    <nav class="space-x-4">
+      <button class="font-medium text-gray-900">Services</button>
+      <button class="font-medium text-gray-900">Projects</button>
+      <a href="/contacts" class="font-medium text-gray-900"> Contacts</a>
+    </nav>
+
+    <span class="h-8 w-[1px] bg-zinc-200"></span>
+    <div class="flex space-x-2">
+      <a class="icon-btn border border-gray-900" href="/calculate">
+        <Calculator class="h-6 w-6 text-gray-900" />
+      </a>
+      <a class="btn bg-gray-900 text-neutral-50" href="/contact">
+        Contact us
+        <ArrowRight class="h-4 w-4 stroke-neutral-50" />
+      </a>
+    </div>
+  </div>
+</header>
