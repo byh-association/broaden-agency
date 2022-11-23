@@ -26,9 +26,9 @@ const { tags, title, description } = Astro.props;
     <meta name="keywords" content={tags.join(", ")} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="space-y-24">
+    <Header />
     <Container>
-      <Header />
       <main class="space-y-24">
         <slot />
       </main>
