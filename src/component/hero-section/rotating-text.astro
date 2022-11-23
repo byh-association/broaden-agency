@@ -42,14 +42,16 @@ const getMyGradient = (key: string): string => {
 };
 ---
 
-<div class="mb-[-4px] flex h-16 flex-col items-center overflow-hidden md:h-24">
+<div
+  class="mb-[-4px] flex h-16 flex-col items-start sm:items-center overflow-hidden md:h-24"
+>
   {
     loopedWords.map((word, index) => {
       const gradient = getMyGradient(word);
       return (
         <span
           style={{ animationDuration, animationDelay: "2s" }}
-          class={`block animate-[textRotating_1s_linear_infinite] text-center text-6xl font-bold text-transparent md:text-8xl ${gradient} bg-clip-text`}
+          class={`block animate-[textRotating_1s_linear_infinite] text-center text-6xl font-bold text-transparent sm:text-8xl md:text-8xl ${gradient} bg-clip-text`}
         >
           {word}
         </span>
