@@ -11,9 +11,13 @@ interface Props {
   title: string;
   tags: string[];
   description: string;
+  isHeaderDark?: boolean;
+  withFooter?: boolean;
+  isFooterDark?: boolean;
 }
 
-const { tags, title, description } = Astro.props;
+const { tags, title, description, isHeaderDark, isFooterDark, withFooter } =
+  Astro.props;
 ---
 
 <html lang="en">
@@ -26,13 +30,9 @@ const { tags, title, description } = Astro.props;
     <meta name="keywords" content={tags.join(", ")} />
     <title>{title}</title>
   </head>
-  <body class="space-y-24">
-    <Header />
-    <Container>
-      <main class="space-y-24">
-        <slot />
-      </main>
-      <Footer />
-    </Container>
+  <body>
+    <Header isDark={isHeaderDark} />
+    <slot />
+    {withFooter && <Footer isDark={isFooterDark} />}
   </body>
 </html>

@@ -1,5 +1,7 @@
 ---
 import ContactSection from "../component/contact-section/contact-section.astro";
+import Container from "../component/container.astro";
+import Footer from "../component/footer/footer.astro";
 import HeroSection from "../component/hero-section/hero-section.astro";
 import ReviewSection from "../component/review-section/review-section.astro";
 import ServiceSection from "../component/service-section/service-section.astro";
@@ -10,9 +12,29 @@ const TAGS = ["agency", "service", "landing"];
 const TITLE = "Broaden agency";
 ---
 
-<LandingLayout description={DESCRIPTION} tags={TAGS} title={TITLE}>
-  <HeroSection />
-  <ServiceSection />
-  <ReviewSection />
-  <ContactSection />
+<LandingLayout
+  isHeaderDark={true}
+  description={DESCRIPTION}
+  tags={TAGS}
+  title={TITLE}
+>
+  <Container>
+    <main class="space-y-24 my-24">
+      <HeroSection />
+      <ServiceSection />
+      <ReviewSection />
+    </main>
+  </Container>
+  <div class="bg-gray-900 rounded-t-2xl relative overflow-clip space-y-8">
+    <ContactSection />
+    <Footer isDark={true} />
+    <div
+      class="-top-44 border left-1/2 -ml-28 absolute w-56 h-56 rounded-full md:-left-16 glow-str bg-fuchsia-500"
+    >
+    </div>
+    <div
+      class="hidden md:block glow-str absolute -right-28 bottom-20 w-56 h-56 bg-blue-500 rounded-full"
+    >
+    </div>
+  </div>
 </LandingLayout>

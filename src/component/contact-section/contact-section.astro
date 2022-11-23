@@ -3,7 +3,7 @@ import ArrowRight from "astro-heroicons/outline/ArrowRight.astro";
 ---
 
 <section
-  class="relative flex w-full flex-col items-center justify-center space-y-8 overflow-clip rounded-2xl bg-gray-900 px-7 py-20"
+  class="relative flex w-full flex-col items-center justify-center space-y-12 sm:space-y-8 px-7 pt-24"
 >
   <div class="text-center">
     <h4
@@ -17,25 +17,13 @@ import ArrowRight from "astro-heroicons/outline/ArrowRight.astro";
     You can start with estimating the project cost and then contact us.
   </p>
   <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-7">
-    <a
-      class="btn h-10 bg-blue-500 text-base text-neutral-50"
-      href="/calculator"
-    >
+    <a class="btn bg-blue-700 text-base text-neutral-50" href="/calculator">
       Estimate price
       <ArrowRight class="h-4 w-4" />
     </a>
-    <a class="btn h-10 border border-blue-500 text-blue-500" href="/project">
+    <a class="btn h-12 border border-zinc-200 text-neutral-50" href="/project">
       Our projects
       <ArrowRight class="h-4 w-4" />
     </a>
-  </div>
-
-  <div
-    class="glow-def absolute top-[-70px] left-[-60px] h-56 w-56 rounded-full bg-violet-600"
-  >
-  </div>
-  <div
-    class="glow-def absolute bottom-[-70px] right-[-70px] h-56 w-56 rounded-full bg-cyan-400"
-  >
   </div>
 </section>
