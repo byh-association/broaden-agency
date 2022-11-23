@@ -1,55 +1,82 @@
 ---
+import Container from "../container.astro";
 import FooterLink from "./footer-link.astro";
 
+interface Props {
+  isDark?: boolean;
+}
+
+const { isDark } = Astro.props;
+
 const currentYear = new Date().getFullYear();
+
+const { bgColor, textColor } = isDark
+  ? {
+      textColor: "text-neutral-50",
+      bgColor: "bg-gray-900",
+    }
+  : {
+      textColor: "text-gray-700",
+      bgColor: "transparent",
+    };
 ---
 
-<footer class="flex w-full flex-col space-y-4 py-7">
-  <div class="flex w-full justify-between">
-    Logo
-    <div class="flex space-x-3">
-      <FooterLink inNewTab href="https://facebook.com">
-        <img
-          src="/icons/facebook.svg"
-          alt="Our Facebook group"
-          width={16}
-          height={16}
-        />
-      </FooterLink>
-      <FooterLink inNewTab href="https://instagram.com">
-        <img
-          src="/icons/instagram.svg"
-          alt="Our Instagram page"
-          width={16}
-          height={16}
-        />
-      </FooterLink>
-      <FooterLink inNewTab href="https://linkedin.com">
-        <img
-          src="/icons/linkedin.svg"
-          alt="Our LinkedIn page"
-          width={16}
-          height={16}
-        />
-      </FooterLink>
-      <FooterLink inNewTab href="https://twitter.com">
-        <img
-          src="/icons/twitter.svg"
-          alt="Our Twitter page"
-          width={16}
-          height={16}
-        />
-      </FooterLink>
+<footer class={`${bgColor} `}>
+  <Container>
+    <div class="w-full py-7">
+      <div
+        class={`flex w-full mb-9 md:mb-0 flex-col md:flex-row items-center justify-between ${textColor}`}
+      >
+        <span class={`${textColor} hidden md:inline`}>Logo</span>
+        <div class="flex space-x-8 md:space-x-3">
+          <FooterLink isDark={isDark} inNewTab href="https://facebook.com">
+            <img
+              class="w-6 h-6 md:w-4 md:h-4"
+              src={`/icons/${isDark ? "white" : "default"}-facebook.svg`}
+              alt="Our Facebook group"
+            />
+          </FooterLink>
+          <FooterLink isDark={isDark} inNewTab href="https://instagram.com">
+            <img
+              src={`/icons/${isDark ? "white" : "default"}-instagram.svg`}
+              alt="Our Instagram page"
+              class="w-6 h-6 md:w-4 md:h-4"
+            />
+          </FooterLink>
+          <FooterLink isDark={isDark} inNewTab href="https://linkedin.com">
+            <img
+              src={`/icons/${isDark ? "white" : "default"}-linkedin.svg`}
+              alt="Our LinkedIn page"
+              class="w-6 h-6 md:w-4 md:h-4"
+            />
+          </FooterLink>
+          <FooterLink isDark={isDark} inNewTab href="https://twitter.com">
+            <img
+              src={`/icons/${isDark ? "white" : "default"}-twitter.svg`}
+              alt="Our Twitter page"
+              class="w-6 h-6 md:w-4 md:h-4"
+            />
+          </FooterLink>
+        </div>
+      </div>
+
+      <div
+        class="flex w-full justify-between items-center space-y-4 flex-col md:flex-row"
+      >
+        <p class={`text-xs ${textColor}`}>
+          Copyright © {currentYear} Broaden Association. All rights reserved.
+        </p>
+        <div class="flex space-x-6">
+          <FooterLink isDark={isDark} href="/faq">FAQ</FooterLink>
+          <FooterLink isDark={isDark} href="/privacyPolicy"
+            >Privacy Policy</FooterLink
+          >
+          <FooterLink isDark={isDark} href="/termsOfUse"
+            >Terms of Use</FooterLink
+          >
+        </div>
+        <span class={`${textColor} inline md:hidden`}>Logo</span>
+      </div>
     </div>
-  </div>
-  <div class="flex w-full justify-between">
-    <p class="text-xs text-slate-700">
-      Copyright © {currentYear} Broaden Association. All rights reserved.
-    </p>
-    <div class="flex space-x-6">
-      <FooterLink href="/faq">FAQ</FooterLink>
-      <FooterLink href="/privacyPolicy">Privacy Policy</FooterLink>
-      <FooterLink href="/termsOfUse">Terms of Use</FooterLink>
-    </div>
-  </div>
+  </Container>
 </footer>
