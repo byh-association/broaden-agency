@@ -37,7 +37,7 @@ const ServiceCard = ({
           </p>
         </div>
         <div className="flex w-full justify-end">
-          <div className="text-base font-medium text-blue-500 group-hover:text-neutral-50">
+          <div className="text-base font-medium text-blue-700 group-hover:text-neutral-50">
             Learn more
           </div>
         </div>

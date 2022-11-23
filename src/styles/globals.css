@@ -4,13 +4,13 @@
 
 @layer components {
   .icon-btn {
-    @apply flex h-10 w-10 items-center justify-center gap-2 rounded-lg  p-1;
+    @apply flex h-10 w-10 items-center justify-center rounded-lg p-1;
   }
   .btn {
-    @apply flex items-center justify-center gap-1 rounded py-3 px-6 text-base;
+    @apply flex items-center justify-center gap-[6px] rounded py-3 px-6 text-base;
   }
   .btn-small {
-    @apply flex items-center justify-center gap-2 rounded py-2 px-3 text-base;
+    @apply flex items-center justify-center gap-[6px] rounded py-2 px-3 text-base;
   }
   .glow-def {
     @apply animate-pulse blur-[120px];

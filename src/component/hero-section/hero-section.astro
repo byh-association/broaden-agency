@@ -4,7 +4,7 @@ import RotatingText from "./rotating-text.astro";
 ---
 
 <section
-  class="relative flex flex-col w-full gap-y-11 hero-section-gradient items-center"
+  class="relative flex flex-col w-full gap-y-11 hero-section-gradient items-center py-24 rounded-b-xl"
 >
   <div class="flex flex-col items-center max-w-4xl">
     <RotatingText
@@ -20,26 +20,22 @@ import RotatingText from "./rotating-text.astro";
     arena throughout the years.
   </p>
   <div class="flex gap-2">
-    <a class="btn bg-blue-500 text-neutral-50" href="/calculate">
+    <a class="btn bg-blue-700 text-neutral-50" href="/calculate">
       Project estimation
     </a>
-    <a href="/portfolio" class="btn bg-transparent text-blue-500">
+    <a href="/portfolio" class="btn bg-transparent text-neutral-50">
       Our projects
-      <ArrowRight class="h-4 w-4 text-gray-900" />
+      <ArrowRight class="h-4 w-4 text-neutral-50" />
     </a>
   </div>
 
   {/* Glow effects */}
   <div
-    class="glow-str absolute top-[180px] left-[-169px] hidden h-64 w-64 rounded-full bg-blue-500 md:block"
+    class="glow-str absolute top-[79px] -left-[41px] hidden h-32 w-32 rounded-full bg-blue-700 md:block"
   >
   </div>
   <div
-    class="glow-str absolute top-[-49px] left-[295px] hidden h-64 w-64 rounded-full bg-indigo-900 md:block"
-  >
-  </div>
-  <div
-    class="glow-str absolute top-[112px] right-[154px] h-64 w-64 rounded-full bg-gray-900"
+    class="glow-str absolute top-[-49px] left-[295px] hidden h-32 w-32 rounded-full bg-indigo-900 md:block"
   >
   </div>
 </section>
