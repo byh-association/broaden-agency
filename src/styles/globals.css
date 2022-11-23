@@ -22,7 +22,7 @@
     @apply drop-shadow-[0_4px_10px_rgba(228,228,231,0.75)];
   }
   .shadow-section {
-    @apply drop-shadow-[0_4px_30px_rgba(17,24,39,0.5)];
+    @apply drop-shadow-[0_4px_30px_rgba(17,24,39,0.1)];
   }
   .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
@@ -30,6 +30,27 @@
   .scrollbar-hidden {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+  }
+  .gradient-blue-black {
+    @apply bg-gradient-to-r from-[#2980B9] to-[#2C3E50];
+  }
+  .gradient-orange-yellow {
+    @apply bg-gradient-to-r from-[#F09819] to-[#EDDE5D];
+  }
+  .gradient-orange-red {
+    @apply bg-gradient-to-r from-[#FE8C00] to-[#F83600];
+  }
+  .gradient-blue-red {
+    @apply bg-gradient-to-r from-[#009FFF] to-[#EC2F4B];
+  }
+  .gradient-green-lightgreen {
+    @apply bg-gradient-to-r from-[#56AB2F] to-[#A8E063];
+  }
+  .gradient-green-yellow {
+    @apply bg-gradient-to-r from-[#16A085] to-[#DABA3B];
+  }
+  .gradient-pink-purple {
+    @apply bg-gradient-to-r from-[#9D50BB] to-[#6E48AA];
   }
 }
 
