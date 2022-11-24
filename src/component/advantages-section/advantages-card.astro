@@ -1,13 +1,25 @@
 ---
 import type { AdvantageCardContent } from "./advantage-card.type";
 
-type Props = AdvantageCardContent;
+type Props = AdvantageCardContent & {
+  isImageLeftSided: boolean;
+};
 
-const { name, title, postTitle, description, image, gradient } = Astro.props;
+const {
+  name,
+  title,
+  postTitle,
+  description,
+  image,
+  gradient,
+  isImageLeftSided,
+} = Astro.props;
 ---
 
 <div
-  class="px-6 lg:px-[72px] py-12 rounded-[10px] shadow-section bg-neutral-50 flex justify-between items-center"
+  class={`px-6 lg:px-[72px] py-12 rounded-[10px] shadow-section bg-neutral-50 flex ${
+    isImageLeftSided ? "flex-row-reverse" : "flex-row"
+  } justify-between items-center`}
 >
   <!-- Text -->
   <div class="flex flex-col gap-y-4 w-full max-w-lg">

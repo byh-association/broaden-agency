@@ -6,6 +6,13 @@ import { advantagesData } from "./data";
 
 <LandingSectionLayout title="Why you should choose us?" titleClassName="mb-10">
   <div class="w-full flex flex-col gap-y-10">
-    {advantagesData.map((advantage) => <AdvantagesCard {...advantage} />)}
+    {
+      advantagesData.map((advantage, index) => (
+        <AdvantagesCard
+          isImageLeftSided={(index + 1) % 2 === 0}
+          {...advantage}
+        />
+      ))
+    }
   </div>
 </LandingSectionLayout>
