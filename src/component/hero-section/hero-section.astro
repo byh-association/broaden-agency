@@ -1,55 +1,69 @@
 ---
 import ArrowRight from "astro-heroicons/outline/ArrowRight.astro";
-
-import RotatingText from "./rotating-text";
+import Container from "../container.astro";
+import RotatingText from "./rotating-text.astro";
 ---
 
-<section class="relative flex w-full items-center justify-between">
-  {/* Left text content */}
-  <div class="flex max-w-[560px] flex-col space-y-11">
-    <div class="flex flex-col">
-      <RotatingText
-        tickDuration={1500}
-        words={["Build", "Release", "Maintain", "Publish"]}
-      />
-      <h1 class="text-6xl font-bold text-slate-700 md:text-8xl">
-        your dream app with us
-      </h1>
+<section
+  class="relative w-full gap-y-11 hero-section-gradient items-center py-12 sm:py-24 rounded-b-xl"
+>
+  <Container>
+    <div class="flex flex-col w-full gap-y-11 items-start sm:items-center z-10">
+      <!-- Main text -->
+      <div
+        class="flex flex-col items-start sm:items-center max-w-[335px] sm:max-w-4xl"
+      >
+        <RotatingText
+          tickDuration={2000}
+          words={["Build", "Release", "Maintain", "Publish"]}
+        />
+        <h1
+          class="text-6xl sm:text-8xl font-bold text-neutral-50 md:text-8xl text-left sm:text-center"
+        >
+          your dream app with us
+        </h1>
+      </div>
+      <!-- Description -->
+      <p
+        class="text-2xl text-neutral-50 w-full max-w-[554px] text-left sm:text-center"
+      >
+        Our experience has helped our clients launch new companies in the
+        digital arena throughout the years.
+      </p>
+      <div class="flex gap-2">
+        <a
+          class="btn-small sm:btn bg-blue-700 text-neutral-50"
+          href="/calculate"
+        >
+          Project estimation
+        </a>
+        <a
+          href="/portfolio"
+          class="btn-small sm:btn bg-transparent text-neutral-50"
+        >
+          Our projects
+          <ArrowRight class="h-4 w-4 text-neutral-50" />
+        </a>
+      </div>
     </div>
-    <p class="text-2xl text-slate-700">
-      Our experience has helped our clients launch new companies in the digital
-      arena throughout the years.
-    </p>
-    <div class="flex gap-2">
-      <a class="btn bg-blue-500 text-neutral-50" href="/calculate">
-        Project estimation
-      </a>
-      <a href="/portfolio" class="btn bg-transparent text-blue-500">
-        Our projects
-        <ArrowRight class="h-4 w-4 text-gray-900" />
-      </a>
-    </div>
-  </div>
-  {/* Hero section illustration */}
-  <div class="relative hidden h-[388px] w-[514px] md:block">
-    <img
-      src="/landing/hero-illustration.svg"
-      sizes="(max-width: 640px) 0px"
-      alt="Building modern application illustration"
-    />
-  </div>
+  </Container>
 
   {/* Glow effects */}
   <div
-    class="glow-str absolute top-[180px] left-[-169px] hidden h-64 w-64 rounded-full bg-blue-500 md:block"
+    class="glow-def absolute top-[79px] -left-[41px] hidden h-32 w-32 rounded-full bg-blue-700 md:block"
   >
   </div>
   <div
-    class="glow-str absolute top-[-49px] left-[295px] hidden h-64 w-64 rounded-full bg-indigo-900 md:block"
+    class="glow-def absolute bottom-[219px] left-[208px] hidden h-32 w-32 rounded-full bg-indigo-900 md:block"
+  >
+  </div>
+
+  <div
+    class="glow-def absolute top-[76px] right-[324px] hidden h-32 w-32 rounded-full gradient-blue-red md:block"
   >
   </div>
   <div
-    class="glow-str absolute top-[112px] right-[154px] h-64 w-64 rounded-full bg-gray-900"
+    class="glow-def absolute bottom-[231px] right-[123px] hidden h-32 w-32 rounded-full gradient-pink-purple md:block"
   >
   </div>
 </section>

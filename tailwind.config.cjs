@@ -12,19 +12,19 @@ module.exports = {
 
       keyframes: {
         textRotating: {
-          "10%": {
+          "5%": {
             transform: "translateY(-100%)",
           },
-          "25%": {
+          "30%": {
             transform: "translateY(-100%)",
           },
           "35%": {
             transform: "translateY(-200%)",
           },
-          "50%": {
+          "60%": {
             transform: "translateY(-200%)",
           },
-          "60%": {
+          "65%": {
             transform: "translateY(-300%)",
           },
           "75%": {
