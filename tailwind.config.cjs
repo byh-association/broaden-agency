@@ -15,22 +15,22 @@ module.exports = {
           "5%": {
             transform: "translateY(-100%)",
           },
-          "30%": {
+          "25%": {
             transform: "translateY(-100%)",
           },
-          "35%": {
+          "30%": {
             transform: "translateY(-200%)",
           },
-          "60%": {
+          "50%": {
             transform: "translateY(-200%)",
           },
-          "65%": {
+          "55%": {
             transform: "translateY(-300%)",
           },
           "75%": {
             transform: "translateY(-300%)",
           },
-          "85%": {
+          "80%": {
             transform: "translateY(-400%)",
           },
           "100%": {
