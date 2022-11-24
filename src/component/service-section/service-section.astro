@@ -1,8 +1,11 @@
 ---
 import LandingSectionLayout from "../../layouts/landing-section-layout.astro";
-import ServiceSectionContent from "./service-section-content";
+import { serviceCardsData } from "./data";
+import ServiceCard from "./service-card.astro";
 ---
 
 <LandingSectionLayout title="What we are delivering" titleClassName="mb-10">
-  <ServiceSectionContent />
+  <div class="grid gap-5 grid-cols-1 md:grid-cols-3">
+    {serviceCardsData.map((data) => <ServiceCard {...data} />)}
+  </div>
 </LandingSectionLayout>

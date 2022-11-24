@@ -57,6 +57,10 @@
   }
 }
 
+body {
+  @apply bg-neutral-50;
+}
+
 * {
   margin: 0;
   padding: 0;
