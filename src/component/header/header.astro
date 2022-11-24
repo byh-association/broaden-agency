@@ -15,7 +15,7 @@ const { bgColor, textColor, button, borderColor } = isDark
       bgColor: "bg-gray-900",
       borderColor: "border-neutral-50",
       button: {
-        textColor: "text-gray-900",
+        textColor: "text-blue-700",
         bgColor: "bg-neutral-50",
       },
     }
@@ -46,16 +46,13 @@ const { bgColor, textColor, button, borderColor } = isDark
           <a href="/contacts" class={`font-medium ${textColor}`}> Contacts</a>
         </nav>
 
-        <span class="h-8 w-[1px] bg-zinc-200"></span>
+        <span class="h-8 w-[1px] bg-slate-700"></span>
         <div class="flex space-x-2">
-          <a class={`icon-btn border ${borderColor}`} href="/calculate">
-            <Calculator class={`h-6 w-6 ${textColor}`} />
-          </a>
           <a
             class={`btn-small ${button.bgColor} ${button.textColor} rounded `}
             href="/contact"
           >
-            Contact us
+            Estimate project
           </a>
         </div>
       </div>
