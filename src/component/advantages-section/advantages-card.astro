@@ -1,0 +1,31 @@
+---
+import type { AdvantageCardContent } from "./advantage-card.type";
+
+type Props = AdvantageCardContent;
+
+const { name, title, postTitle, description, image, gradient } = Astro.props;
+---
+
+<div
+  class="px-6 lg:px-[72px] py-12 rounded-[10px] shadow-section bg-neutral-50 flex justify-between items-center"
+>
+  <!-- Text -->
+  <div class="flex flex-col gap-y-4 w-full max-w-lg">
+    <h4
+      class={`font-bold text-2xl text-transparent bg-clip-text ${gradient} whitespace-nowrap w-min`}
+    >
+      {name}
+    </h4>
+    <p class="text-slate-700 font-bold text-3xl w-full">
+      {title}<br />{postTitle}
+    </p>
+    <p class="text-base text-slate-700 w-full">{description}</p>
+  </div>
+
+  <!-- Image -->
+  <img
+    src={image.url}
+    alt={image.alt}
+    class="w-[456px] h-[350px] hidden lg:block"
+  />
+</div>

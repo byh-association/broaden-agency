@@ -1,0 +1,19 @@
+---
+import type { ComponentProps } from "preact";
+
+interface Props {
+  title: string;
+  titleClassName: ComponentProps<"div">["className"];
+}
+
+const { title, titleClassName } = Astro.props;
+---
+
+<section class="w-full flex flex-col items-center">
+  <h2
+    class={`mx-5 sm:mx-0 text-center font-bold text-3xl text-slate-700 ${titleClassName}`}
+  >
+    {title}
+  </h2>
+  <div class="w-full"><slot /></div>
+</section>

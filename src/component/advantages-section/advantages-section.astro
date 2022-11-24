@@ -1,0 +1,11 @@
+---
+import LandingSectionLayout from "../../layouts/landing-section-layout.astro";
+import AdvantagesCard from "./advantages-card.astro";
+import { advantagesData } from "./data";
+---
+
+<LandingSectionLayout title="Why you should choose us?" titleClassName="mb-10">
+  <div class="w-full flex flex-col gap-y-10">
+    {advantagesData.map((advantage) => <AdvantagesCard {...advantage} />)}
+  </div>
+</LandingSectionLayout>
