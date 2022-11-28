@@ -43,17 +43,12 @@ const showcaseData: ShowcaseCardType[] = [
 ];
 ---
 
-<LandingLayout
-  withVerticalPaddings={true}
-  description={DESCRIPTION}
-  tags={TAGS}
-  title={TITLE}
->
+<LandingLayout description={DESCRIPTION} tags={TAGS} title={TITLE}>
   <main>
     <Container>
       <section class="text-slate-700 flex flex-col items-center">
-        <h1 class="text-6xl mb-9 font-bold">Project showcase</h1>
-        <p class="text-base mb-12 w-[444px] text-center">
+        <h1 class="text-6xl mb-9 font-bold text-center">Project showcase</h1>
+        <p class="text-base mb-12 max-w-[444px] text-center">
           The first screen displays the company’s motto. The next two screens
           display the company description and a list of its services.
         </p>

@@ -15,7 +15,7 @@ interface Props {
   isHeaderDark?: boolean;
   withFooter?: boolean;
   isFooterDark?: boolean;
-  withVerticalPaddings?: boolean;
+  withVerticalGap?: boolean;
 }
 
 const {
@@ -25,7 +25,7 @@ const {
   isHeaderDark,
   isFooterDark,
   withFooter = true,
-  withVerticalPaddings,
+  withVerticalGap = true,
 } = Astro.props;
 ---
 
@@ -39,7 +39,7 @@ const {
     <meta name="keywords" content={tags.join(", ")} />
     <title>{title}</title>
   </head>
-  <body class={`${withVerticalPaddings && "space-y-24"}`}>
+  <body class={`${withVerticalGap && "space-y-24"}`}>
     <Header isDark={isHeaderDark} />
     <slot />
     {withFooter && <Footer isDark={isFooterDark} />}
