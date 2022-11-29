@@ -1,6 +1,8 @@
 ---
-import Menu from "astro-heroicons/solid/Bars3.astro";
 import Container from "../container.astro";
+import HeaderMenu from "./header-menu";
+import { HeaderNavigation } from "./header-navigation";
+import { getHeaderColorScheme } from "./helpers/get-header-color-scheme";
 
 interface Props {
   isDark?: boolean;
@@ -8,25 +10,7 @@ interface Props {
 
 const { isDark } = Astro.props;
 
-const { bgColor, textColor, button, borderColor } = isDark
-  ? {
-      textColor: "text-neutral-50",
-      bgColor: "bg-gray-900",
-      borderColor: "border-neutral-50",
-      button: {
-        textColor: "text-blue-700",
-        bgColor: "bg-neutral-50",
-      },
-    }
-  : {
-      textColor: "text-gray-900",
-      bgColor: "transparent",
-      borderColor: "border-gray-900",
-      button: {
-        textColor: "text-neutral-50",
-        bgColor: "bg-gray-900",
-      },
-    };
+const { bgColor, textColor } = getHeaderColorScheme(isDark);
 ---
 
 <header class={bgColor}>
@@ -35,30 +19,10 @@ const { bgColor, textColor, button, borderColor } = isDark
       <span class={`flex h-12 items-center text-base ${textColor} `}>
         Broaden</span
       >
-
-      <Menu class={`flex ${textColor} h-7 w-7 cursor-pointer sm:hidden`} />
-
       <div class="hidden items-center space-x-4 sm:flex">
-        <nav class="space-x-4">
-          <a href="#services" class={`font-medium ${textColor} scroll-smooth`}
-            >Services</a
-          >
-          <button class={`font-medium ${textColor}`}>Projects</button>
-          <a href="#contacts" class={`font-medium ${textColor} scroll-smooth`}>
-            Contacts</a
-          >
-        </nav>
-
-        <span class="h-8 w-[1px] bg-slate-700"></span>
-        <div class="flex space-x-2">
-          <a
-            class={`btn-small ${button.bgColor} ${button.textColor} rounded `}
-            href="/contact"
-          >
-            Estimate project
-          </a>
-        </div>
+        <HeaderNavigation isDark={isDark} />
       </div>
+      <HeaderMenu client:load isDark={isDark} />
     </div>
   </Container>
 </header>
