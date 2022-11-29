@@ -1,0 +1,75 @@
+---
+import Container from "../component/container.astro";
+import ShowcaseCard from "../component/showcase-card/showcase-card.astro";
+import LandingLayout from "../layouts/landing-layout.astro";
+
+const DESCRIPTION = "Showcase of the {NAME OF THE BRAND}";
+const TAGS = ["agency", "service", "landing", "showcase"];
+const TITLE = "Broaden agency showcase";
+
+export interface ShowcaseCardType {
+  projectPreview: string;
+  projectName: string;
+  description: string;
+  categories: string;
+  projectLink: string;
+}
+
+const showcaseData: ShowcaseCardType[] = [
+  {
+    projectName: "Great car",
+    description: "The best way to sell or buy a car",
+    categories: "Design / Web development / API / Landing Page",
+    projectLink: "",
+    projectPreview:
+      "https://cdn.dribbble.com/userupload/3072766/file/original-0fb7e7be14466f2e9dccb3bdb4a1eacd.png?compress=1&resize=1200x900",
+  },
+  {
+    projectName: "Great car",
+    description: "The best way to sell or buy a car",
+    categories: "Design / Web development / API / Landing Page",
+    projectLink: "",
+    projectPreview:
+      "https://cdn.dribbble.com/userupload/3072766/file/original-0fb7e7be14466f2e9dccb3bdb4a1eacd.png?compress=1&resize=1200x900",
+  },
+  {
+    projectName: "Great car",
+    description: "The best way to sell or buy a car",
+    categories: "Design / Web development / API / Landing Page",
+    projectLink: "",
+    projectPreview:
+      "https://cdn.dribbble.com/userupload/3072766/file/original-0fb7e7be14466f2e9dccb3bdb4a1eacd.png?compress=1&resize=1200x900",
+  },
+];
+---
+
+<LandingLayout description={DESCRIPTION} tags={TAGS} title={TITLE}>
+  <main>
+    <Container>
+      <section class="text-slate-700 flex flex-col items-center">
+        <h1 class="text-6xl mb-9 font-bold text-center">Project showcase</h1>
+        <p class="text-base mb-12 max-w-[444px] text-center">
+          The first screen displays the company’s motto. The next two screens
+          display the company description and a list of its services.
+        </p>
+        <ul class="grid w-full grid-cols-1 md:grid-cols-2 gap-14">
+          {
+            showcaseData.map((item, index) => {
+              const isFullWidth = (index + 1) % 3 === 0;
+              return (
+                // Every third element should be screen width
+                <li
+                  class={`${
+                    isFullWidth ? "md:col-span-2" : "md:col-span-1"
+                  } col-span-1`}
+                >
+                  <ShowcaseCard isFullWidth={isFullWidth} {...item} />
+                </li>
+              );
+            })
+          }
+        </ul>
+      </section>
+    </Container>
+  </main>
+</LandingLayout>
