@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-neutral-50;
+}
+
 @layer components {
   .icon-btn {
     @apply flex h-10 w-10 items-center justify-center rounded-lg p-1;
@@ -55,14 +65,4 @@
   .hero-section-gradient {
     @apply bg-gradient-to-b from-gray-900 to-[#1B2230];
   }
-}
-
-body {
-  @apply bg-neutral-50;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }

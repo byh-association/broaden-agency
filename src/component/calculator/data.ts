@@ -1,4 +1,16 @@
-import type { CalculatorServiceCard } from "./calculator-service-card";
+import type { Component } from "preact";
+
+import type {
+  CalculatorService,
+  CalculatorServiceCard,
+} from "./calculator-service-card";
+
+export interface CalculatorQuestion {
+  id: string;
+  services: CalculatorService[];
+  title: string;
+  form: Component | null;
+}
 
 export const calculatorServicesData: Omit<
   CalculatorServiceCard,
@@ -45,5 +57,32 @@ export const calculatorServicesData: Omit<
     description: "We develop secure backend part for your applications",
     imageAlt: "Server rack",
     imageURL: "calculator/api_illustration.svg",
+  },
+];
+
+export const calculatorQuestionsData: CalculatorQuestion[] = [
+  {
+    id: "landing",
+    services: ["landing"],
+    title: "How many pages do you wanna see on your landing page?",
+    form: null,
+  },
+  {
+    id: "landing",
+    services: ["landing"],
+    title: "How many total sections do you wanna see on your landing page?",
+    form: null,
+  },
+  {
+    id: "landing",
+    services: ["landing"],
+    title: "How many total sections do you wanna see on your landing page?",
+    form: null,
+  },
+  {
+    id: "landing-design",
+    services: ["landing", "design"],
+    title: "Do you need a design for your landing page?",
+    form: null,
   },
 ];
