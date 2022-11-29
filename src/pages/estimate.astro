@@ -1,0 +1,15 @@
+---
+import LandingLayout from "../layouts/landing-layout.astro";
+import Container from "../component/container.astro";
+import CalculatorForm from "../component/calculator/form";
+
+const DESCRIPTION = "Create your dream idea with us";
+const TAGS = ["agency", "service", "landing"];
+const TITLE = "Broaden agency";
+---
+
+<LandingLayout withFooter description={DESCRIPTION} tags={TAGS} title={TITLE}>
+  <Container>
+    <CalculatorForm client:visible />
+  </Container>
+</LandingLayout>
