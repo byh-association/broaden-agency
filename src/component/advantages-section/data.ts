@@ -6,7 +6,7 @@ export const advantagesData: AdvantageCardContent[] = [
     title: "No delays.",
     postTitle: "We start working after getting project details.",
     description:
-      "After contacting us we will discus project details and start working immediately. After contacting us we will discus project details and start working immediately. After contacting us we will discus project details and start working immediately.",
+      "Get it fast. We take digital strategy, planning and design to develop bespoke software for any web business that works for you.",
     image: {
       url: "/landing/calendar.svg",
       alt: "Woman with calendar",
@@ -16,9 +16,9 @@ export const advantagesData: AdvantageCardContent[] = [
   {
     name: "Fair price",
     title: "No overprice.",
-    postTitle: "We start working after getting project details.",
+    postTitle: "Get honest fair price without any hidden surprise.",
     description:
-      "After contacting us we will discus project details and start working immediately. After contacting us we will discus project details and start working immediately. After contacting us we will discus project details and start working immediately.",
+      "We believe that you should know the price of anything before you make a decision. That's why we are committed to providing you with the lowest prices in our service area without any hidden surprises.",
     image: {
       url: "/landing/charts.svg",
       alt: "Charts",
@@ -30,7 +30,7 @@ export const advantagesData: AdvantageCardContent[] = [
     title: "Best technologies.",
     postTitle: "We use modern, fast, secure technologies for our projects.",
     description:
-      "Our projects are built on modern and secure technological stack. Our project are ULTRA fast and stable. Our projects are built on modern and secure techological stack. Our project are ULTRA fast and stable.",
+      "Our solutions are following top-notch technological standards and use modern, reliable technology for their implementation. Our solutions provide the best user experience due to their speed and stability.",
     image: {
       url: "/landing/rocket.svg",
       alt: "Spaceship",

@@ -13,7 +13,7 @@ export const serviceCardsData: (ServiceCardProps & { key: string })[] = [
 
   {
     key: "2",
-    body: "Search engine optimization is the process of improving the quality and quantity of website traffic to a website or a web page from search engines.",
+    body: "Web design doesn't end with a pretty picture. We design truly functional, multimedia rich websites that meet your business needs and goals.",
     href: "/info/design",
     iconPath: "/icons/design.svg",
     title: "Design",
@@ -22,7 +22,7 @@ export const serviceCardsData: (ServiceCardProps & { key: string })[] = [
   },
   {
     key: "3",
-    body: "Search engine optimization is the process of improving the quality and quantity of website traffic to a website or a web page from search engines.",
+    body: "We are an inbound marketing agency that can help you gain new customers, generate leads and increase revenue through content.",
     href: "/info/webdev",
     iconPath: "/icons/marketing.svg",
     title: "Marketing",

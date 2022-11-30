@@ -1,0 +1,29 @@
+---
+interface Props {
+  href: string;
+  isFullWidth?: boolean;
+  isReleased?: boolean;
+}
+const { href, isFullWidth, isReleased } = Astro.props;
+---
+
+{
+  isReleased ? (
+    <a
+      href={href}
+      class={`shadow-section group flex h-full w-full flex-col gap-10 rounded-xl bg-neutral-50 p-10  ${
+        isFullWidth && "md:flex md:flex-row-reverse md:justify-between"
+      } `}
+    >
+      <slot />
+    </a>
+  ) : (
+    <div
+      class={`shadow-section group flex h-full w-full flex-col gap-10 rounded-xl bg-neutral-50 p-10  ${
+        isFullWidth && "md:flex md:flex-row-reverse md:justify-between"
+      } `}
+    >
+      <slot />
+    </div>
+  )
+}
