@@ -41,9 +41,13 @@ const { bgColor, textColor, button, borderColor } = isDark
 
       <div class="hidden items-center space-x-4 sm:flex">
         <nav class="space-x-4">
-          <button class={`font-medium ${textColor}`}>Services</button>
+          <a href="#services" class={`font-medium ${textColor} scroll-smooth`}
+            >Services</a
+          >
           <button class={`font-medium ${textColor}`}>Projects</button>
-          <a href="/contacts" class={`font-medium ${textColor}`}> Contacts</a>
+          <a href="#contacts" class={`font-medium ${textColor} scroll-smooth`}>
+            Contacts</a
+          >
         </nav>
 
         <span class="h-8 w-[1px] bg-slate-700"></span>
