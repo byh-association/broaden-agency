@@ -1,8 +1,9 @@
-import { useState } from "preact/hooks";
+import { useCallback, useMemo, useState } from "preact/hooks";
 
 import type { CalculatorService } from "./calculator-service-card";
 import type { CalculatorQuestion } from "./data";
-import CalculatorQuizStep from "./quiz-step";
+import { calculatorQuestionsData } from "./data";
+import CalculatorQuizStep from "./form-step";
 import CalculatorServicesStep from "./services-step";
 
 export type Step = "services" | "quiz" | "contact";
@@ -10,7 +11,7 @@ export type Step = "services" | "quiz" | "contact";
 export type CalculatorQuestionAnswer = {
   id: CalculatorQuestion["id"];
   title: CalculatorQuestion["title"];
-  value: string | number | boolean;
+  value: string | number | boolean | null;
 };
 
 export type Form = {
@@ -28,7 +29,28 @@ const CalculatorForm = () => {
   const [selectedServices, setSelectedServices] = useState<CalculatorService[]>(
     []
   );
+
+  const questions = useMemo(() => {
+    return [...calculatorQuestionsData].filter((question) => {
+      return question.services.every((s) => selectedServices.includes(s));
+    });
+  }, [selectedServices]);
+
   const [form, setForm] = useState<Form>();
+
+  const onQuizSubmit = (answers: CalculatorQuestionAnswer[]) => {
+    setForm((prev) => {
+      return {
+        ...prev,
+        answers: [...(prev?.answers || []), ...answers],
+      };
+    });
+    setStep("contact");
+  };
+
+  const onSubmit = () => {
+    console.log("form", form);
+  };
 
   return (
     <div className="flex flex-col items-center gap-y-8">
@@ -48,17 +70,8 @@ const CalculatorForm = () => {
           setServices={setSelectedServices}
         />
       )}
-      {step === "quiz" && (
-        <CalculatorQuizStep
-          services={selectedServices}
-          onQuestionSubmit={(answer) =>
-            setForm((prev) => ({
-              ...prev,
-              answers: [...(prev?.answers || []), answer],
-            }))
-          }
-          setNextStep={() => setStep("contact")}
-        />
+      {step === "quiz" && questions.length > 0 && (
+        <CalculatorQuizStep questions={questions} onSubmit={onQuizSubmit} />
       )}
     </div>
   );

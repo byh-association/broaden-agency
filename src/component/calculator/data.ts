@@ -9,7 +9,7 @@ export interface CalculatorQuestion {
   id: string;
   services: CalculatorService[];
   title: string;
-  form: Component | null;
+  form: "boolean" | "string" | "counter" | null;
 }
 
 export const calculatorServicesData: Omit<
@@ -65,24 +65,18 @@ export const calculatorQuestionsData: CalculatorQuestion[] = [
     id: "landing",
     services: ["landing"],
     title: "How many pages do you wanna see on your landing page?",
-    form: null,
+    form: "counter",
   },
   {
     id: "landing",
     services: ["landing"],
     title: "How many total sections do you wanna see on your landing page?",
-    form: null,
-  },
-  {
-    id: "landing",
-    services: ["landing"],
-    title: "How many total sections do you wanna see on your landing page?",
-    form: null,
+    form: "counter",
   },
   {
     id: "landing-design",
     services: ["landing", "design"],
     title: "Do you need a design for your landing page?",
-    form: null,
+    form: "boolean",
   },
 ];

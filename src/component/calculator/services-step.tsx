@@ -1,13 +1,13 @@
 import type { FunctionComponent } from "preact";
 import type { StateUpdater } from "preact/hooks";
 
-import type { CalculatorServiceID } from "./calculator-service-card";
+import type { CalculatorService } from "./calculator-service-card";
 import CalculatorServiceCard from "./calculator-service-card";
 import { calculatorServicesData } from "./data";
 
 interface Props {
-  services: CalculatorServiceID[];
-  setServices: StateUpdater<CalculatorServiceID[]>;
+  services: CalculatorService[];
+  setServices: StateUpdater<CalculatorService[]>;
   onSubmit: () => void;
 }
 
@@ -18,7 +18,7 @@ const CalculatorServicesStep: FunctionComponent<Props> = ({
 }) => {
   const isButtonDisabled = services.length === 0;
 
-  const onClick = (id: CalculatorServiceID) => {
+  const onClick = (id: CalculatorService) => {
     setServices((prev) => {
       const isExists = prev.includes(id);
       if (isExists) return prev.filter((el) => el !== id);
