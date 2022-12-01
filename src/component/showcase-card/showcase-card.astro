@@ -1,5 +1,6 @@
 ---
 import type { ShowcaseCardType } from "../../pages/showcases.astro";
+import ShowcardWrapper from "./showcard-wrapper.astro";
 
 interface Props extends ShowcaseCardType {
   isFullWidth?: boolean;
@@ -13,13 +14,14 @@ const {
   isFullWidth,
   projectLink,
 } = Astro.props;
+
+const isReleased = !!projectLink;
 ---
 
-<a
+<ShowcardWrapper
+  isReleased={isReleased}
   href={projectLink}
-  class={`p-10 rounded-xl group w-full h-full shadow-section flex flex-col gap-10 bg-neutral-50  ${
-    isFullWidth && "md:flex md:flex-row-reverse md:justify-between"
-  } `}
+  isFullWidth={isFullWidth}
 >
   <img
     src={projectPreview}
@@ -36,5 +38,10 @@ const {
     </h2>
     <h3 class="font-bold text-3xl">{description}</h3>
     <p class="text-slate-400 text-base">{categories}</p>
+    {
+      !isReleased && (
+        <p class="italic text-gray-200">(Not released, coming soon!)</p>
+      )
+    }
   </section>
-</a>
+</ShowcardWrapper>

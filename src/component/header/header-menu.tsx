@@ -11,7 +11,7 @@ interface Props {
 
 const HeaderMenu: FunctionalComponent<Props> = ({ isDark }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { textColor, bgColor } = getHeaderColorScheme(isDark);
+  const { textColor } = getHeaderColorScheme(isDark);
 
   useEffect(() => {
     function handleResize() {
@@ -29,7 +29,6 @@ const HeaderMenu: FunctionalComponent<Props> = ({ isDark }) => {
     if (isOpen) {
       return document.body.classList.add("overflow-hidden");
     }
-
     return document.body.classList.remove("overflow-hidden");
   }, [isOpen]);
 
@@ -42,14 +41,16 @@ const HeaderMenu: FunctionalComponent<Props> = ({ isDark }) => {
 
       <div
         onClick={() => setIsOpen(false)}
-        className={`-top-full ${
-          isOpen && "top-20 right-0 h-screen w-full bg-gray-900 bg-opacity-70"
+        className={`-top-full bg-gray-900 bg-opacity-40  transition ease-in-out ${
+          isOpen && "top-20 right-0 h-screen w-full  bg-opacity-40"
         }  absolute z-20`}
       >
         <div
           className={`absolute right-0 opacity-0 transition ease-in-out ${
             isOpen ? "opacity-100" : "-top-full"
-          } z-20 flex w-full flex-col items-center gap-6 ${bgColor} p-10`}
+          } z-20 flex w-full flex-col items-center gap-6 ${
+            isDark ? "bg-gray-900" : "bg-neutral-50"
+          } p-10`}
         >
           <HeaderNavigation isDark={isDark} />
         </div>

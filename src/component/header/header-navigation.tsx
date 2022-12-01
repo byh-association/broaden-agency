@@ -11,11 +11,13 @@ export const HeaderNavigation: FunctionalComponent<Props> = ({ isDark }) => {
   return (
     <>
       <nav className="flex flex-col gap-6 sm:flex-row sm:gap-4">
-        <a href="#services" class={`font-medium ${textColor} scroll-smooth`}>
+        <a href="/#services" class={`font-medium ${textColor} scroll-smooth`}>
           Services
         </a>
-        <a class={`font-medium ${textColor}`}>Projects</a>
-        <a href="#contacts" class={`font-medium ${textColor} scroll-smooth`}>
+        <a href="/showcases" class={`font-medium ${textColor}`}>
+          Projects
+        </a>
+        <a href="/#contacts" class={`font-medium ${textColor} scroll-smooth`}>
           Contacts
         </a>
       </nav>
