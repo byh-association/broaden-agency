@@ -1,29 +1,32 @@
 import type { FunctionComponent } from "preact";
-import type { StateUpdater } from "preact/hooks";
+import { useMemo } from "preact/hooks";
 
+import type { Form } from ".";
 import type { CalculatorService } from "./calculator-service-card";
 import CalculatorServiceCard from "./calculator-service-card";
 import { calculatorServicesData } from "./data";
 
 interface Props {
-  services: CalculatorService[];
-  setServices: StateUpdater<CalculatorService[]>;
+  services: Form["selectedServices"];
+  onChange: (val: Form["selectedServices"]) => void;
   onSubmit: () => void;
 }
 
 const CalculatorServicesStep: FunctionComponent<Props> = ({
-  services,
-  setServices,
   onSubmit,
+  onChange,
+  services,
 }) => {
-  const isButtonDisabled = services.length === 0;
+  const isButtonDisabled = useMemo(() => services.length === 0, [services]);
 
   const onClick = (id: CalculatorService) => {
-    setServices((prev) => {
-      const isExists = prev.includes(id);
-      if (isExists) return prev.filter((el) => el !== id);
-      return [...prev, id];
-    });
+    const isExists = services.includes(id);
+    if (isExists) {
+      onChange(services.filter((el) => el !== id));
+      return;
+    }
+    onChange([...services, id]);
+    return;
   };
 
   return (

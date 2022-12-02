@@ -1,51 +1,64 @@
-import { useCallback, useMemo, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 
 import type { CalculatorService } from "./calculator-service-card";
 import type { CalculatorQuestion } from "./data";
 import { calculatorQuestionsData } from "./data";
-import CalculatorQuizStep from "./form-step";
+import CalculatorQuestionsStep from "./questions";
 import CalculatorServicesStep from "./services-step";
 
 export type Step = "services" | "quiz" | "contact";
 
-export type CalculatorQuestionAnswer = {
-  id: CalculatorQuestion["id"];
-  title: CalculatorQuestion["title"];
-  value: string | number | boolean | null;
-};
-
 export type Form = {
-  contacts?: {
-    email: string;
-    name: string;
-    body: string;
+  contacts: {
+    email: string | null;
+    name: string | null;
+    body: string | null;
   };
-  selectedServices?: CalculatorService[];
-  answers?: CalculatorQuestionAnswer[];
+  selectedServices: CalculatorService[];
+  questions: Record<CalculatorQuestion["id"], CalculatorQuestion>;
 };
 
 const CalculatorForm = () => {
   const [step, setStep] = useState<Step>("services");
-  const [selectedServices, setSelectedServices] = useState<CalculatorService[]>(
-    []
-  );
+  const [form, setForm] = useState<Form>({
+    contacts: {
+      body: null,
+      name: null,
+      email: null,
+    },
+    selectedServices: [],
+    questions: {},
+  });
 
-  const questions = useMemo(() => {
-    return [...calculatorQuestionsData].filter((question) => {
-      return question.services.every((s) => selectedServices.includes(s));
+  const onServiceStepSubmit = () => {
+    const questions = [...calculatorQuestionsData].filter((question) => {
+      return question.services.every((s) => form.selectedServices.includes(s));
     });
-  }, [selectedServices]);
-
-  const [form, setForm] = useState<Form>();
-
-  const onQuizSubmit = (answers: CalculatorQuestionAnswer[]) => {
     setForm((prev) => {
       return {
         ...prev,
-        answers: [...(prev?.answers || []), ...answers],
+        questions: questions.reduce((a, v) => ({ ...a, [v.id]: v }), {}),
       };
     });
+    setStep("quiz");
+  };
+
+  const onQuestionsStepSubmit = () => {
     setStep("contact");
+  };
+
+  const onServiceChange = (newServices: Form["selectedServices"]) => {
+    setForm((prev) => ({
+      ...prev,
+      selectedServices: newServices,
+    }));
+  };
+
+  const onQuestionsChange = (newQuestions: Form["questions"]) => {
+    setForm((prev) => ({
+      ...prev,
+      questions: newQuestions,
+    }));
   };
 
   const onSubmit = () => {
@@ -65,13 +78,18 @@ const CalculatorForm = () => {
       </p>
       {step === "services" && (
         <CalculatorServicesStep
-          services={selectedServices}
-          onSubmit={() => setStep("quiz")}
-          setServices={setSelectedServices}
+          services={form.selectedServices}
+          onChange={onServiceChange}
+          onSubmit={onServiceStepSubmit}
         />
       )}
-      {step === "quiz" && questions.length > 0 && (
-        <CalculatorQuizStep questions={questions} onSubmit={onQuizSubmit} />
+      {step === "quiz" && Object.keys(form.questions).length > 0 && (
+        <CalculatorQuestionsStep
+          questions={form.questions}
+          onSubmit={onQuestionsStepSubmit}
+          onChange={onQuestionsChange}
+          onBack={() => setStep("services")}
+        />
       )}
     </div>
   );

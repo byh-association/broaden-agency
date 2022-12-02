@@ -1,5 +1,3 @@
-import type { Component } from "preact";
-
 import type {
   CalculatorService,
   CalculatorServiceCard,
@@ -10,6 +8,7 @@ export interface CalculatorQuestion {
   services: CalculatorService[];
   title: string;
   form: "boolean" | "string" | "counter" | null;
+  value?: boolean | string | number | null;
 }
 
 export const calculatorServicesData: Omit<
@@ -62,21 +61,24 @@ export const calculatorServicesData: Omit<
 
 export const calculatorQuestionsData: CalculatorQuestion[] = [
   {
-    id: "landing",
+    id: "landing-pages",
     services: ["landing"],
     title: "How many pages do you wanna see on your landing page?",
     form: "counter",
+    value: 0,
   },
   {
-    id: "landing",
+    id: "landing-sections",
     services: ["landing"],
     title: "How many total sections do you wanna see on your landing page?",
     form: "counter",
+    value: 0,
   },
   {
     id: "landing-design",
     services: ["landing", "design"],
     title: "Do you need a design for your landing page?",
     form: "boolean",
+    value: true,
   },
 ];

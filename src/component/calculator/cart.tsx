@@ -1,5 +1,5 @@
 const CalculatorCart = () => {
-  const withData = true;
+  const withData = false;
 
   return (
     <div className="shadow-section flex w-full max-w-[340px] flex-col rounded-md bg-neutral-50">
