@@ -1,7 +1,8 @@
 import { useState } from "preact/hooks";
 
 import type { CalculatorService } from "./calculator-service-card";
-import type { CalculatorQuestion } from "./data";
+import CalculatorCart from "./cart";
+import type { CalculatorQuestion, CalculatorQuestionID } from "./data";
 import { calculatorQuestionsData } from "./data";
 import CalculatorQuestionsStep from "./questions";
 import CalculatorServicesStep from "./services-step";
@@ -15,7 +16,7 @@ export type Form = {
     body: string | null;
   };
   selectedServices: CalculatorService[];
-  questions: Record<CalculatorQuestion["id"], CalculatorQuestion>;
+  questions: Partial<Record<CalculatorQuestionID, CalculatorQuestion>>;
 };
 
 const CalculatorForm = () => {
@@ -44,6 +45,7 @@ const CalculatorForm = () => {
   };
 
   const onQuestionsStepSubmit = () => {
+    console.log("form", form);
     setStep("contact");
   };
 
@@ -83,13 +85,25 @@ const CalculatorForm = () => {
           onSubmit={onServiceStepSubmit}
         />
       )}
-      {step === "quiz" && Object.keys(form.questions).length > 0 && (
-        <CalculatorQuestionsStep
-          questions={form.questions}
-          onSubmit={onQuestionsStepSubmit}
-          onChange={onQuestionsChange}
-          onBack={() => setStep("services")}
-        />
+      {(step === "quiz" || step === "contact") && (
+        <div className="flex w-full gap-x-28">
+          <div>
+            {step === "quiz" && (
+              <CalculatorQuestionsStep
+                questions={form.questions}
+                onSubmit={onQuestionsStepSubmit}
+                onChange={onQuestionsChange}
+                onBack={() => setStep("services")}
+              />
+            )}
+            {step === "contact" && <div></div>}
+          </div>
+
+          <CalculatorCart
+            questions={form.questions}
+            services={form.selectedServices}
+          />
+        </div>
       )}
     </div>
   );

@@ -26,7 +26,7 @@ export const HeaderNavigation: FunctionalComponent<Props> = ({ isDark }) => {
       <div className="flex space-x-2">
         <a
           className={`btn-small ${button.bgColor} ${button.textColor} rounded `}
-          href="/contact"
+          href="/estimate"
         >
           Estimate project
         </a>

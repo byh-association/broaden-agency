@@ -4,7 +4,7 @@ import type {
 } from "./calculator-service-card";
 
 export interface CalculatorQuestion {
-  id: string;
+  id: CalculatorQuestionID;
   services: CalculatorService[];
   title: string;
   form: "boolean" | "string" | "counter" | null;
@@ -59,6 +59,13 @@ export const calculatorServicesData: Omit<
   },
 ];
 
+export type CalculatorQuestionID =
+  | "landing-pages"
+  | "landing-sections"
+  | "landing-design"
+  | "web-design"
+  | "mobile-design";
+
 export const calculatorQuestionsData: CalculatorQuestion[] = [
   {
     id: "landing-pages",
@@ -78,6 +85,20 @@ export const calculatorQuestionsData: CalculatorQuestion[] = [
     id: "landing-design",
     services: ["landing", "design"],
     title: "Do you need a design for your landing page?",
+    form: "boolean",
+    value: true,
+  },
+  {
+    id: "web-design",
+    services: ["web", "design"],
+    title: "Do you need a design for your web application?",
+    form: "boolean",
+    value: true,
+  },
+  {
+    id: "mobile-design",
+    services: ["mobile", "design"],
+    title: "Do you need a design for your mobile application?",
     form: "boolean",
     value: true,
   },

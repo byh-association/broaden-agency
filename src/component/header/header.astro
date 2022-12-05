@@ -16,9 +16,14 @@ const { bgColor, textColor } = getHeaderColorScheme(isDark);
 <header class={bgColor}>
   <Container>
     <div class="flex w-full items-center justify-between py-3">
-      <span class={`flex h-12 items-center text-base ${textColor} `}>
-        Broaden</span
-      >
+      <a href="/">
+        <img
+          src={`logos/${isDark ? "dark.svg" : "light.svg"}`}
+          alt="Broadency logo"
+          class="h-5"
+        />
+      </a>
+
       <div class="hidden items-center space-x-4 sm:flex">
         <HeaderNavigation isDark={isDark} />
       </div>
