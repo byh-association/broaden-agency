@@ -34,6 +34,12 @@ body {
   .shadow-section {
     @apply drop-shadow-[0_4px_30px_rgba(17,24,39,0.1)];
   }
+  .shadow-input {
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.4);
+  }
+  .shadow-input-focus {
+    box-shadow: 0px 0px 10px rgba(57, 127, 240, 0.2), inset 0px 0px 3px #377ae6;
+  }
   .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }

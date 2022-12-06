@@ -1,7 +1,7 @@
 import type {
   CalculatorService,
   CalculatorServiceCard,
-} from "./calculator-service-card";
+} from "../components/calculator-service-card";
 
 export interface CalculatorQuestion {
   id: CalculatorQuestionID;

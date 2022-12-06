@@ -1,10 +1,10 @@
 import type { FunctionComponent } from "preact";
 import { useMemo } from "preact/hooks";
 
-import type { Form } from ".";
-import type { CalculatorService } from "./calculator-service-card";
-import CalculatorServiceCard from "./calculator-service-card";
-import { calculatorServicesData } from "./data";
+import type { Form } from "..";
+import type { CalculatorService } from "../components/calculator-service-card";
+import CalculatorServiceCard from "../components/calculator-service-card";
+import { calculatorServicesData } from "../data/data";
 
 interface Props {
   services: Form["selectedServices"];

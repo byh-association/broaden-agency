@@ -1,10 +1,9 @@
 import type { FunctionComponent } from "preact";
 import { useMemo } from "preact/hooks";
 
-import type { Form } from ".";
-import BooleanQuestionForm from "./boolean-form";
-import CounterForm from "./counter-form";
-import type { CalculatorQuestion, CalculatorQuestionID } from "./data";
+import BooleanQuestionForm from "../components/boolean-form";
+import CounterForm from "../components/counter-form";
+import type { CalculatorQuestion, CalculatorQuestionID } from "../data/data";
 
 interface Props {
   questions: Partial<Record<CalculatorQuestionID, CalculatorQuestion>>;
@@ -37,7 +36,7 @@ const CalculatorQuestionsStep: FunctionComponent<Props> = ({
   const entities = useMemo(() => Object.entries(questions), [questions]);
 
   return (
-    <div className="shadow-section flex h-min w-full flex-col gap-y-6 rounded-md bg-neutral-50 p-6">
+    <div className="flex w-full flex-col gap-y-6">
       {entities.map(([id, question]) => {
         return (
           <div className="flex flex-col gap-y-2">

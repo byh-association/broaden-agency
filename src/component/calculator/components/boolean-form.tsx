@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "preact";
 
-import RadioButton from "../radio-button";
+import RadioButton from "../../radio-button";
 
 interface Props {
   value: boolean;

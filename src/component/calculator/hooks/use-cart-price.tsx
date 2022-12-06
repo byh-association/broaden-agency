@@ -1,23 +1,17 @@
-import type { FunctionComponent } from "preact";
 import { useMemo } from "preact/hooks";
 
-import type { Form } from ".";
-import prices from "./prices.json";
+import type { Form } from "..";
+import type { CartItemProps } from "../components/cart-item";
+import prices from "../data/prices.json";
 
 interface Props {
   questions: Form["questions"];
   services: Form["selectedServices"];
 }
 
-interface ItemProps {
-  title: string;
-  description: string;
-  cost: number;
-}
-
-const CalculatorCart: FunctionComponent<Props> = ({ questions, services }) => {
-  const data = useMemo<ItemProps[]>(() => {
-    const result: ItemProps[] = [];
+export const useCartPrice = ({ questions, services }: Props) => {
+  const items = useMemo<CartItemProps[]>(() => {
+    const result: CartItemProps[] = [];
 
     services.forEach((service) => {
       switch (service) {
@@ -88,8 +82,8 @@ const CalculatorCart: FunctionComponent<Props> = ({ questions, services }) => {
       if (
         services.includes("design") &&
         Object.entries(questions)
-          .filter(([id]) => id.includes("design"))
-          .some(([_, value]) => !!value.value)
+          .filter(([, value]) => value.services.includes("design"))
+          .some(([, value]) => !!value.value)
       ) {
         let cost = 0;
         const designFor = [];
@@ -111,79 +105,21 @@ const CalculatorCart: FunctionComponent<Props> = ({ questions, services }) => {
           designFor.push("mobile app");
         }
 
-        if (questions["landing-pages"]?.value)
-          result.push({
-            title: "Design",
-            description: `for ${designFor.join(", ")}`,
-            cost,
-          });
+        result.push({
+          title: "Design",
+          description: `for ${designFor.join(", ")}`,
+          cost,
+        });
       }
     }
     return result;
   }, [questions, services]);
 
-  return (
-    <div className="shadow-section flex h-min w-full max-w-[340px] flex-col rounded-md bg-neutral-50">
-      {/* No data */}
-      {data.length === 0 && (
-        <div className="flex h-full w-full flex-col items-center justify-center gap-y-8 px-16 py-20">
-          <img
-            src="calculator/quiz_illustration.svg"
-            alt="Online quiz"
-            className="h-[149px]"
-          />
-          <p className="text-center font-medium text-slate-700">
-            Answer the questions and here will be your project summary
-          </p>
-        </div>
-      )}
-
-      {/* Summary */}
-      {data.length > 0 && (
-        <div>
-          <div className="flex w-full flex-col">
-            {data.map((item) => {
-              return (
-                <CalculatorCartItem
-                  key={`calculator-cart-item_${item.title
-                    .replaceAll(" ", "")
-                    .toLowerCase()}`}
-                  {...item}
-                />
-              );
-            })}
-          </div>
-          <div className="flex w-full justify-between rounded-bl-md rounded-br-md bg-zinc-200 p-4">
-            <p className="font-medium text-slate-700">Estimated total</p>
-            <div className="flex flex-col items-end pt-[5px]">
-              <span className="text-xs uppercase">From</span>
-              <span className="gradient-pink-purple bg-clip-text font-bold text-transparent">
-                {data.length > 0
-                  ? `$${data.map((i) => i.cost).reduce((acc, v) => acc + v)}`
-                  : "$0"}
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default CalculatorCart;
-
-const CalculatorCartItem: FunctionComponent<ItemProps> = ({
-  title,
-  description,
-  cost,
-}) => {
-  return (
-    <div className="flex w-full justify-between px-4 py-3">
-      <div className="flex flex-col gap-y-2">
-        <p className="font-medium text-slate-700">{title}</p>
-        <span className="text-xs text-slate-400">{description}</span>
-      </div>
-      <p className="font-medium text-slate-400">${cost}</p>
-    </div>
-  );
+  return {
+    items,
+    totalPrice:
+      items.length > 0
+        ? `$${items.map((i) => i.cost).reduce((acc, v) => acc + v)}`
+        : "$0",
+  };
 };
