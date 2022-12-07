@@ -11,7 +11,7 @@ interface Props {
 }
 
 const CalculatorQuestionsStep: FC<Props> = ({ setStep }) => {
-  const { watch, control, trigger } = useFormContext<Form>();
+  const { watch, control, trigger, getValues } = useFormContext<Form>();
 
   const values = Object.values(watch("questions"));
 
@@ -46,8 +46,31 @@ const CalculatorQuestionsStep: FC<Props> = ({ setStep }) => {
               <Controller
                 name={`questions.${question.id}.value`}
                 control={control}
-                render={({ field: { value, onChange } }) => (
-                  <CounterForm value={value as number} onChange={onChange} />
+                rules={{
+                  min: {
+                    value: 1,
+                    message: "The minimum value is 1",
+                  },
+                  validate: (value) => {
+                    if (question.id === "landing-sections") {
+                      const landingPageCount =
+                        getValues().questions["landing-pages"]?.value || 0;
+                      return (
+                        (value && value >= landingPageCount) ||
+                        "The section count should be more or equal to the page count"
+                      );
+                    }
+                  },
+                }}
+                render={({
+                  field: { value, onChange },
+                  fieldState: { error },
+                }) => (
+                  <CounterForm
+                    value={value as number}
+                    onChange={onChange}
+                    error={error?.message}
+                  />
                 )}
               />
             )}

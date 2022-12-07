@@ -1,3 +1,4 @@
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import type { FC } from "react";
 
 interface Props {
@@ -5,7 +6,7 @@ interface Props {
   value: string;
   onChange: (val: string) => void;
   label: string;
-  errorMessage?: string;
+  error?: string;
 }
 
 const Textarea: FC<Props> = ({
@@ -13,7 +14,7 @@ const Textarea: FC<Props> = ({
   placeholder,
   value,
   label,
-  errorMessage,
+  error,
 }) => {
   return (
     <div className="flex flex-col gap-y-2">
@@ -26,10 +27,14 @@ const Textarea: FC<Props> = ({
           onInput={(e) => onChange(e.currentTarget.value)}
         />
       </div>
-      {errorMessage && (
+      {error && (
         <div className="flex items-center">
-          <img src="icons/error.svg" alt="Error icon" className="h-5 w-5" />
-          <span className="text-red-600">{errorMessage}</span>
+          <ExclamationTriangleIcon
+            width={20}
+            height={20}
+            className="text-red-600"
+          />
+          <span className="text-red-600">{error}</span>
         </div>
       )}
     </div>

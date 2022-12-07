@@ -6,7 +6,7 @@ import CalculatorCart from "./components/cart";
 import type { CalculatorQuestion, CalculatorQuestionID } from "./data/data";
 import ContactForm from "./steps/contact";
 import CalculatorQuestionsStep from "./steps/questions";
-import CalculatorServicesStep from "./steps/services-step";
+import CalculatorServicesStep from "./steps/services";
 
 export type Step = "services" | "quiz" | "contact";
 
@@ -40,7 +40,8 @@ const CalculatorForm = () => {
     defaultValues: calculatorDefaultFormValues,
   });
 
-  const onSubmit = () => {
+  const onSubmit = (data: Form) => {
+    console.log("submit", data);
     return;
   };
 
@@ -56,7 +57,7 @@ const CalculatorForm = () => {
         calculator step.
       </p>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <form className="w-full" onSubmit={methods.handleSubmit(onSubmit)}>
           {step === "services" && <CalculatorServicesStep setStep={setStep} />}
           {(step === "quiz" || step === "contact") && (
             <div className="mt-4 flex w-full gap-x-28">
@@ -64,7 +65,7 @@ const CalculatorForm = () => {
                 {step === "quiz" && (
                   <CalculatorQuestionsStep setStep={setStep} />
                 )}
-                {step === "contact" && <ContactForm />}
+                {step === "contact" && <ContactForm setStep={setStep} />}
               </div>
               <CalculatorCart />
             </div>

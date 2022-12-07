@@ -1,3 +1,4 @@
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import type { FC } from "react";
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
   iconURL?: string;
   iconALT?: string;
   label: string;
-  errorMessage?: string;
+  error?: string;
 }
 
 const Input: FC<Props> = ({
@@ -17,7 +18,7 @@ const Input: FC<Props> = ({
   iconURL,
   iconALT,
   label,
-  errorMessage,
+  error,
 }) => {
   return (
     <div className="flex flex-col gap-y-2">
@@ -32,10 +33,14 @@ const Input: FC<Props> = ({
         />
         {iconURL && <img src={iconURL} alt={iconALT} />}
       </div>
-      {errorMessage && (
-        <div className="flex items-center">
-          <img src="icons/error.svg" alt="Error icon" className="h-5 w-5" />
-          <span className="text-red-600">{errorMessage}</span>
+      {error && (
+        <div className="flex items-center gap-x-1">
+          <ExclamationTriangleIcon
+            width={20}
+            height={20}
+            className="text-red-600"
+          />
+          <span className="text-red-600">{error}</span>
         </div>
       )}
     </div>
