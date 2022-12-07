@@ -1,9 +1,9 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 
 import type { CalculatorService } from "./components/calculator-service-card";
 import CalculatorCart from "./components/cart";
 import type { CalculatorQuestion, CalculatorQuestionID } from "./data/data";
-import { calculatorQuestionsData } from "./data/data";
 import ContactForm from "./steps/contact";
 import CalculatorQuestionsStep from "./steps/questions";
 import CalculatorServicesStep from "./steps/services-step";
@@ -16,70 +16,32 @@ export type Form = {
     firstName: string;
     lastName: string;
     body: string;
+    budget: number;
   };
-  selectedServices: CalculatorService[];
+  services: CalculatorService[];
   questions: Partial<Record<CalculatorQuestionID, CalculatorQuestion>>;
+};
+
+export const calculatorDefaultFormValues: Form = {
+  contacts: {
+    body: "",
+    budget: 0,
+    email: "",
+    firstName: "",
+    lastName: "",
+  },
+  services: [],
+  questions: {},
 };
 
 const CalculatorForm = () => {
   const [step, setStep] = useState<Step>("services");
-  const [form, setForm] = useState<Form>({
-    contacts: {
-      body: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-    },
-    selectedServices: [],
-    questions: {},
+  const methods = useForm<Form>({
+    defaultValues: calculatorDefaultFormValues,
   });
 
-  const onServiceStepSubmit = () => {
-    const questions = [...calculatorQuestionsData].filter((question) => {
-      return question.services.every((s) => form.selectedServices.includes(s));
-    });
-    setForm((prev) => {
-      return {
-        ...prev,
-        questions: questions.reduce((a, v) => ({ ...a, [v.id]: v }), {}),
-      };
-    });
-    if (questions.length === 0) {
-      setStep("contact");
-      return;
-    }
-    setStep("quiz");
-    return;
-  };
-
-  const onQuestionsStepSubmit = () => {
-    console.log("form", form);
-    setStep("contact");
-  };
-
-  const onServiceChange = (newServices: Form["selectedServices"]) => {
-    setForm((prev) => ({
-      ...prev,
-      selectedServices: newServices,
-    }));
-  };
-
-  const onQuestionsChange = (newQuestions: Form["questions"]) => {
-    setForm((prev) => ({
-      ...prev,
-      questions: newQuestions,
-    }));
-  };
-
-  const onContactsChange = (newContacts: Form["contacts"]) => {
-    setForm((prev) => ({
-      ...prev,
-      contacts: newContacts,
-    }));
-  };
-
   const onSubmit = () => {
-    console.log("form", form);
+    return;
   };
 
   return (
@@ -93,38 +55,22 @@ const CalculatorForm = () => {
         application (web, mobile) - we cannot define the final price on the
         calculator step.
       </p>
-      {step === "services" && (
-        <CalculatorServicesStep
-          services={form.selectedServices}
-          onChange={onServiceChange}
-          onSubmit={onServiceStepSubmit}
-        />
-      )}
-      {(step === "quiz" || step === "contact") && (
-        <div className="mt-4 flex w-full gap-x-28">
-          <div className="shadow-section h-min w-full rounded-md bg-neutral-50 p-6">
-            {step === "quiz" && (
-              <CalculatorQuestionsStep
-                questions={form.questions}
-                onSubmit={onQuestionsStepSubmit}
-                onChange={onQuestionsChange}
-                onBack={() => setStep("services")}
-              />
-            )}
-            {step === "contact" && (
-              <ContactForm
-                contacts={form.contacts}
-                onChange={onContactsChange}
-              />
-            )}
-          </div>
-
-          <CalculatorCart
-            questions={form.questions}
-            services={form.selectedServices}
-          />
-        </div>
-      )}
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          {step === "services" && <CalculatorServicesStep setStep={setStep} />}
+          {(step === "quiz" || step === "contact") && (
+            <div className="mt-4 flex w-full gap-x-28">
+              <div className="shadow-section h-min w-full rounded-md bg-neutral-50 p-6">
+                {step === "quiz" && (
+                  <CalculatorQuestionsStep setStep={setStep} />
+                )}
+                {step === "contact" && <ContactForm />}
+              </div>
+              <CalculatorCart />
+            </div>
+          )}
+        </form>
+      </FormProvider>
     </div>
   );
 };

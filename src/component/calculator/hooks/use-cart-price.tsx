@@ -1,19 +1,21 @@
-import { useMemo } from "preact/hooks";
+import { useMemo } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
 
 import type { Form } from "..";
 import type { CartItemProps } from "../components/cart-item";
 import prices from "../data/prices.json";
 
-interface Props {
-  questions: Form["questions"];
-  services: Form["selectedServices"];
-}
+export const useCartPrice = () => {
+  const { control } = useFormContext<Form>();
 
-export const useCartPrice = ({ questions, services }: Props) => {
+  const { services, questions } = useWatch({
+    control: control,
+  });
+
   const items = useMemo<CartItemProps[]>(() => {
     const result: CartItemProps[] = [];
 
-    services.forEach((service) => {
+    services?.forEach((service) => {
       switch (service) {
         case "api": {
           result.push({
@@ -49,17 +51,17 @@ export const useCartPrice = ({ questions, services }: Props) => {
         }
       }
     });
-    const questionAnswers = Object.values(questions);
+    const questionAnswers = !!questions ? Object.values(questions) : [];
 
     // Landing
     const withLandingSections =
       questionAnswers.findIndex((q) => q.id === "landing-sections") > -1;
     const withLandingPages =
       questionAnswers.findIndex((q) => q.id === "landing-pages") > -1;
-    const sectionCountValue = questions["landing-sections"]?.value as
+    const sectionCountValue = questions?.["landing-sections"]?.value as
       | number
       | undefined;
-    const pageCountValue = questions["landing-pages"]?.value as
+    const pageCountValue = questions?.["landing-pages"]?.value as
       | number
       | undefined;
     if (withLandingSections && withLandingPages) {
@@ -80,27 +82,27 @@ export const useCartPrice = ({ questions, services }: Props) => {
       });
 
       if (
-        services.includes("design") &&
-        Object.entries(questions)
-          .filter(([, value]) => value.services.includes("design"))
+        services?.includes("design") &&
+        (questions ? Object.entries(questions) : [])
+          .filter(([, value]) => value.services?.includes("design"))
           .some(([, value]) => !!value.value)
       ) {
         let cost = 0;
         const designFor = [];
 
-        if (questions["landing-design"]?.value) {
+        if (questions?.["landing-design"]?.value) {
           cost +=
             sectionCount * prices.design.landing.section +
             pageCount * prices.design.landing.page;
           designFor.push("landing page");
         }
 
-        if (questions["web-design"]?.value) {
+        if (questions?.["web-design"]?.value) {
           cost += prices.design.web;
           designFor.push("web app");
         }
 
-        if (questions["mobile-design"]?.value) {
+        if (questions?.["mobile-design"]?.value) {
           cost += prices.design.mobile;
           designFor.push("mobile app");
         }

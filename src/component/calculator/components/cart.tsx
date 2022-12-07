@@ -1,19 +1,10 @@
-import type { FunctionComponent } from "preact";
+import type { FC } from "react";
 
-import type { Form } from "..";
 import { useCartPrice } from "../hooks/use-cart-price";
 import CalculatorCartItem from "./cart-item";
 
-interface Props {
-  questions: Form["questions"];
-  services: Form["selectedServices"];
-}
-
-const CalculatorCart: FunctionComponent<Props> = ({ questions, services }) => {
-  const { items, totalPrice } = useCartPrice({
-    questions,
-    services,
-  });
+const CalculatorCart: FC = () => {
+  const { items, totalPrice } = useCartPrice();
 
   return (
     <div className="flex max-w-[340px] flex-col gap-y-2">

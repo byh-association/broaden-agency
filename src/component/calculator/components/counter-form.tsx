@@ -1,11 +1,11 @@
-import type { FunctionComponent } from "preact";
+import type { FC } from "react";
 
 interface Props {
   value: number;
   onChange: (val: number) => void;
 }
 
-const CounterForm: FunctionComponent<Props> = ({ value, onChange }) => {
+const CounterForm: FC<Props> = ({ value, onChange }) => {
   const onIncrease = () => {
     const nextValue = value + 1;
     if (nextValue === 100) return;

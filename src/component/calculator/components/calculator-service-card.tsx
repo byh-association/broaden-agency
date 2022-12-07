@@ -1,4 +1,4 @@
-import type { FunctionComponent } from "preact";
+import type { FC } from "react";
 
 export type CalculatorService =
   | "landing"
@@ -21,7 +21,7 @@ interface Props extends CalculatorServiceCard {
   onClick: () => void;
 }
 
-const CalculatorServiceCard: FunctionComponent<Props> = ({
+const CalculatorServiceCard: FC<Props> = ({
   title,
   description,
   imageAlt,
@@ -32,20 +32,20 @@ const CalculatorServiceCard: FunctionComponent<Props> = ({
   return (
     <div
       onClick={onClick}
-      class={`shadow-section flex cursor-pointer flex-col gap-y-4 rounded-lg bg-neutral-50 px-8 py-12 transition-all ${
+      className={`shadow-section flex cursor-pointer flex-col gap-y-4 rounded-lg bg-neutral-50 px-8 py-12 transition-all ${
         isSelected ? "border-2 border-blue-700" : ""
       }`}
     >
-      <img src={imageURL} alt={imageAlt} class="h-[140px] select-none" />
-      <div class="flex w-full flex-col items-center justify-center gap-y-2">
+      <img src={imageURL} alt={imageAlt} className="h-[140px] select-none" />
+      <div className="flex w-full flex-col items-center justify-center gap-y-2">
         <span
-          class={`text-2xl font-bold transition-all ${
+          className={`text-2xl font-bold transition-all ${
             isSelected ? "text-blue-700" : "text-slate-700"
           }`}
         >
           {title}
         </span>
-        <p class="text-center text-slate-700">{description}</p>
+        <p className="text-center text-slate-700">{description}</p>
       </div>
     </div>
   );

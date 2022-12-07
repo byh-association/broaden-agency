@@ -1,4 +1,4 @@
-import type { FunctionComponent } from "preact";
+import type { FC } from "react";
 
 interface Props {
   isChecked: boolean;
@@ -6,17 +6,13 @@ interface Props {
   text?: string;
 }
 
-const RadioButton: FunctionComponent<Props> = ({
-  onClick,
-  isChecked,
-  text,
-}) => {
+const RadioButton: FC<Props> = ({ onClick, isChecked, text }) => {
   return (
     <div
       onClick={() => onClick(true)}
-      class="flex cursor-pointer items-center gap-x-2"
+      className="flex cursor-pointer items-center gap-x-2"
     >
-      <span class={`h-5 w-5 rounded-full border border-blue-700 p-1`}>
+      <span className={`h-5 w-5 rounded-full border border-blue-700 p-1`}>
         {isChecked && (
           <div className="h-full w-full rounded-full bg-blue-700" />
         )}

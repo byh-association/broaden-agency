@@ -1,33 +1,53 @@
-import type { FunctionComponent } from "preact";
-import { useMemo } from "preact/hooks";
+import type { FC } from "react";
+import { useCallback } from "react";
+import { useFormContext } from "react-hook-form";
 
-import type { Form } from "..";
+import type { Form, Step } from "..";
 import type { CalculatorService } from "../components/calculator-service-card";
 import CalculatorServiceCard from "../components/calculator-service-card";
-import { calculatorServicesData } from "../data/data";
+import { calculatorQuestionsData, calculatorServicesData } from "../data/data";
 
 interface Props {
-  services: Form["selectedServices"];
-  onChange: (val: Form["selectedServices"]) => void;
-  onSubmit: () => void;
+  setStep: React.Dispatch<React.SetStateAction<Step>>;
 }
 
-const CalculatorServicesStep: FunctionComponent<Props> = ({
-  onSubmit,
-  onChange,
-  services,
-}) => {
-  const isButtonDisabled = useMemo(() => services.length === 0, [services]);
+const CalculatorServicesStep: FC<Props> = ({ setStep }) => {
+  const { setValue, getValues, watch } = useFormContext<Form>();
 
-  const onClick = (id: CalculatorService) => {
-    const isExists = services.includes(id);
-    if (isExists) {
-      onChange(services.filter((el) => el !== id));
+  const onSubmit = () => {
+    const questions = [...calculatorQuestionsData].filter((question) => {
+      return question.services.every((s) => getValues().services.includes(s));
+    });
+    if (questions.length === 0) {
+      setStep("contact");
       return;
     }
-    onChange([...services, id]);
+    setValue(
+      "questions",
+      questions.reduce((a, v) => ({ ...a, [v.id]: v }), {})
+    );
+    setStep("quiz");
     return;
   };
+
+  const services = watch("services");
+  const isButtonDisabled = services.length === 0;
+
+  const onClick = useCallback(
+    (id: CalculatorService) => {
+      const isExists = services.includes(id);
+      if (isExists) {
+        setValue(
+          "services",
+          services.filter((el) => el !== id)
+        );
+        return;
+      }
+      setValue("services", [...services, id]);
+      return;
+    },
+    [services, setValue]
+  );
 
   return (
     <div className="flex flex-col items-center gap-y-8">

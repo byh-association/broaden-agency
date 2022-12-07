@@ -6,7 +6,8 @@
   "plugins": ["@typescript-eslint", "simple-import-sort"],
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "plugin:astro/recommended"
+    "plugin:astro/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn",

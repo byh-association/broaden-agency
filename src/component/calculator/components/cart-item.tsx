@@ -1,4 +1,4 @@
-import type { FunctionComponent } from "preact";
+import type { FC } from "react";
 
 export interface CartItemProps {
   title: string;
@@ -6,7 +6,7 @@ export interface CartItemProps {
   cost: number;
 }
 
-const CalculatorCartItem: FunctionComponent<CartItemProps> = ({
+const CalculatorCartItem: FC<CartItemProps> = ({
   title,
   description,
   cost,

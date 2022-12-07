@@ -1,60 +1,54 @@
-import type { FunctionComponent } from "preact";
-import { useMemo } from "preact/hooks";
+import type { FC } from "react";
+import { useCallback } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
+import type { Form, Step } from "..";
 import BooleanQuestionForm from "../components/boolean-form";
 import CounterForm from "../components/counter-form";
-import type { CalculatorQuestion, CalculatorQuestionID } from "../data/data";
 
 interface Props {
-  questions: Partial<Record<CalculatorQuestionID, CalculatorQuestion>>;
-  onChange: (
-    questions: Partial<Record<CalculatorQuestionID, CalculatorQuestion>>
-  ) => void;
-  onSubmit: () => void;
-  onBack: () => void;
+  setStep: React.Dispatch<React.SetStateAction<Step>>;
 }
 
-const CalculatorQuestionsStep: FunctionComponent<Props> = ({
-  onSubmit,
-  onChange,
-  onBack,
-  questions,
-}) => {
-  const onValueChange = (
-    id: CalculatorQuestionID,
-    value: CalculatorQuestion["value"]
-  ) => {
-    onChange({
-      ...questions,
-      [id]: {
-        ...questions[id],
-        value,
-      },
-    });
-  };
+const CalculatorQuestionsStep: FC<Props> = ({ setStep }) => {
+  const { watch, control, trigger } = useFormContext<Form>();
 
-  const entities = useMemo(() => Object.entries(questions), [questions]);
+  const values = Object.values(watch("questions"));
+
+  const onSubmit = useCallback(async () => {
+    const result = await trigger();
+    if (!result) return;
+    setStep("contact");
+  }, [setStep, trigger]);
 
   return (
     <div className="flex w-full flex-col gap-y-6">
-      {entities.map(([id, question]) => {
+      {values.map((question) => {
         return (
-          <div className="flex flex-col gap-y-2">
+          <div
+            key={`calculator_question-${question.id}`}
+            className="flex flex-col gap-y-2"
+          >
             <p className="font-medium text-slate-700">{question.title}</p>
             {question.form === "boolean" && (
-              <BooleanQuestionForm
-                value={(question.value as boolean) || false}
-                onChange={(val) =>
-                  onValueChange(id as CalculatorQuestionID, val)
-                }
+              <Controller
+                name={`questions.${question.id}.value`}
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <BooleanQuestionForm
+                    value={value as boolean}
+                    onChange={onChange}
+                  />
+                )}
               />
             )}
             {question.form === "counter" && (
-              <CounterForm
-                value={(question.value as number) || 0}
-                onChange={(val) =>
-                  onValueChange(id as CalculatorQuestionID, val)
-                }
+              <Controller
+                name={`questions.${question.id}.value`}
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                  <CounterForm value={value as number} onChange={onChange} />
+                )}
               />
             )}
           </div>
@@ -62,7 +56,10 @@ const CalculatorQuestionsStep: FunctionComponent<Props> = ({
       })}
       {/* Buttons */}
       <div className="flex gap-x-6">
-        <button className="btn bg-slate-400 text-neutral-50" onClick={onBack}>
+        <button
+          className="btn bg-slate-400 text-neutral-50"
+          onClick={() => setStep("services")}
+        >
           Back
         </button>
         <button className="btn bg-blue-700 text-neutral-50" onClick={onSubmit}>

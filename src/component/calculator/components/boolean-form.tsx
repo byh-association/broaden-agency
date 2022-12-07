@@ -1,4 +1,4 @@
-import type { FunctionComponent } from "preact";
+import type { FC } from "react";
 
 import RadioButton from "../../radio-button";
 
@@ -7,7 +7,7 @@ interface Props {
   onChange: (value: boolean) => void;
 }
 
-const BooleanQuestionForm: FunctionComponent<Props> = ({ value, onChange }) => {
+const BooleanQuestionForm: FC<Props> = ({ value, onChange }) => {
   return (
     <div className="flex flex-col gap-y-2">
       <RadioButton
