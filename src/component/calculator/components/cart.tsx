@@ -1,15 +1,15 @@
 import type { FC } from "react";
 
-import { useCartPrice } from "../hooks/use-cart-price";
+import type { useCartPrice } from "../hooks/use-cart-price";
 import CalculatorCartItem from "./cart-item";
 
-const CalculatorCart: FC = () => {
-  const { items, totalPrice } = useCartPrice();
+type Props = ReturnType<typeof useCartPrice>;
 
+const CalculatorCart: FC<Props> = ({ items, totalPrice }) => {
   return (
-    <div className="flex max-w-[340px] flex-col gap-y-2">
+    <div className="flex max-w-full flex-col gap-y-2 md:max-w-[340px]">
       {/* Cart block */}
-      <div className="shadow-section flex h-min w-full max-w-[340px] flex-col rounded-md bg-neutral-50">
+      <div className="shadow-section flex h-min w-full flex-col rounded-md bg-neutral-50">
         {/* No data */}
         {items.length === 0 && (
           <div className="flex h-full w-full flex-col items-center justify-center gap-y-8 px-16 py-20">

@@ -32,7 +32,8 @@ const CounterForm: FC<Props> = ({ value, onChange, error }) => {
           <img src="icons/minus.svg" alt="Decrease" className="h-6 w-5" />
         </button>
 
-        <span className="flex w-7 select-none justify-center text-center text-2xl font-medium">
+        {/* Value */}
+        <span className="flex w-7 select-none justify-center text-center text-2xl font-medium text-slate-700">
           {value}
         </span>
 

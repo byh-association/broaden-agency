@@ -8,5 +8,7 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react()]
+  output: "server",
+  integrations: [tailwind(), react()],
+  site: "http://localhost:3000",
 });

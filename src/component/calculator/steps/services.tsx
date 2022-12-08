@@ -61,7 +61,7 @@ const CalculatorServicesStep: FC<Props> = ({ setStep }) => {
           Press on a card to select a service
         </span>
       </div>
-      <div className="grid w-full max-w-[939px] grid-cols-3 grid-rows-2 gap-6">
+      <div className="grid w-full max-w-[939px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {calculatorServicesData.map((service) => {
           return (
             <CalculatorServiceCard

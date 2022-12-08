@@ -1,7 +1,8 @@
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import type { FC } from "react";
+import type { FC, InputHTMLAttributes } from "react";
 
-interface Props {
+interface Props
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   placeholder: string;
   value: string;
   onChange: (val: string) => void;
@@ -19,6 +20,7 @@ const Input: FC<Props> = ({
   iconALT,
   label,
   error,
+  ...props
 }) => {
   return (
     <div className="flex flex-col gap-y-2">
@@ -30,6 +32,7 @@ const Input: FC<Props> = ({
           value={value}
           placeholder={placeholder}
           onInput={(e) => onChange(e.currentTarget.value)}
+          {...props}
         />
         {iconURL && <img src={iconURL} alt={iconALT} />}
       </div>

@@ -685,10 +685,22 @@
   dependencies:
     "@types/unist" "*"
 
+"@types/node@*":
+  version "18.11.11"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.11.tgz#1d455ac0211549a8409d3cdb371cd55cc971e8dc"
+  integrity sha512-KJ021B1nlQUBLopzZmPBVuGU9un7WJd/W4ya7Ih02B4Uwky5Nja0yGYav2EfYIk0RR2Q9oVhf60S2XR1BCWJ2g==
+
 "@types/node@^18.11.9":
   version "18.11.9"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
   integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
+
+"@types/nodemailer@^6.4.6":
+  version "6.4.6"
+  resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-6.4.6.tgz#ce21b4b474a08f672f182e15982b7945dde1f288"
+  integrity sha512-pD6fL5GQtUKvD2WnPmg5bC2e8kWCAPDwMPmHe/ohQbW+Dy0EcHgZ2oCSuPlWNqk74LS5BVMig1SymQbFMPPK3w==
+  dependencies:
+    "@types/node" "*"
 
 "@types/parse5@^6.0.0":
   version "6.0.3"
@@ -3234,6 +3246,16 @@ node-releases@^2.0.6:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.6.tgz#8a7088c63a55e493845683ebf3c828d8c51c5503"
   integrity sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==
 
+nodemailer-react@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/nodemailer-react/-/nodemailer-react-1.0.2.tgz#b4f938f36645923a1b5a4cdef13c3b739f4bafc8"
+  integrity sha512-3XJ1lZUQivQDq9arYGSqbDAT8iDZEVMpRvECQ9MW6N6/c2U15ndcX69vjgshvYjm4Sbu8u+YLTy/D+zKIkka6A==
+
+nodemailer@^6.8.0:
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.8.0.tgz#804bcc5256ee5523bc914506ee59f8de8f0b1cd5"
+  integrity sha512-EjYvSmHzekz6VNkNd12aUqAco+bOkRe3Of5jVhltqKhEsjw/y0PYPJfp83+s9Wzh1dspYAkUW/YNQ350NATbSQ==
+
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
@@ -3574,7 +3596,7 @@ quick-lru@^5.1.1:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-5.1.1.tgz#366493e6b3e42a3a6885e2e99d18f80fb7a8c932"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
 
-react-dom@^18.0.0:
+react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==

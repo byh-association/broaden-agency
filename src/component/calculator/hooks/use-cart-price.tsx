@@ -1,15 +1,18 @@
 import { useMemo } from "react";
-import { useFormContext, useWatch } from "react-hook-form";
+import type { Control } from "react-hook-form";
+import { useWatch } from "react-hook-form";
 
 import type { Form } from "..";
 import type { CartItemProps } from "../components/cart-item";
 import prices from "../data/prices.json";
 
-export const useCartPrice = () => {
-  const { control } = useFormContext<Form>();
+interface Props {
+  control: Control<Form, any>;
+}
 
+export const useCartPrice = (props: Props) => {
   const { services, questions } = useWatch({
-    control: control,
+    control: props.control,
   });
 
   const items = useMemo<CartItemProps[]>(() => {

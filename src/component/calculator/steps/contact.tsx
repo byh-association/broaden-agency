@@ -24,7 +24,7 @@ const ContactForm: FC<Props> = ({ setStep }) => {
       </div>
       {/* Inputs */}
       <div className="flex w-full flex-col gap-y-4">
-        <div className="w-full max-w-[302px]">
+        <div className="w-full max-w-full md:max-w-[302px]">
           <Controller
             name="contacts.email"
             control={control}
@@ -42,12 +42,13 @@ const ContactForm: FC<Props> = ({ setStep }) => {
                 value={value}
                 onChange={onChange}
                 error={error?.message}
+                autoComplete="email"
               />
             )}
           />
         </div>
         <div className="flex w-full flex-col gap-y-4 gap-x-6 sm:flex-row">
-          <div className="w-full max-w-[302px]">
+          <div className="w-full max-w-full md:max-w-[302px]">
             <Controller
               name="contacts.firstName"
               control={control}
@@ -60,15 +61,16 @@ const ContactForm: FC<Props> = ({ setStep }) => {
               }) => (
                 <Input
                   label="First name"
-                  placeholder="First"
+                  placeholder="Michael"
                   value={value}
                   onChange={onChange}
                   error={error?.message}
+                  autoComplete="given-name"
                 />
               )}
             />
           </div>
-          <div className="w-full max-w-[302px]">
+          <div className="w-full max-w-full md:max-w-[302px]">
             <Controller
               name="contacts.lastName"
               control={control}
@@ -81,10 +83,11 @@ const ContactForm: FC<Props> = ({ setStep }) => {
               }) => (
                 <Input
                   label="Last name"
-                  placeholder="Last"
+                  placeholder="Brown"
                   value={value}
                   onChange={onChange}
                   error={error?.message}
+                  autoComplete="family-name"
                 />
               )}
             />
@@ -106,7 +109,7 @@ const ContactForm: FC<Props> = ({ setStep }) => {
             />
           )}
         />
-        <div className="w-full max-w-[302px]">
+        <div className="w-full max-w-full md:max-w-[302px]">
           <Controller
             name="contacts.budget"
             control={control}
@@ -123,6 +126,7 @@ const ContactForm: FC<Props> = ({ setStep }) => {
                   if (isNaN(number)) return;
                   onChange(number);
                 }}
+                type="number"
                 error={error?.message}
               />
             )}

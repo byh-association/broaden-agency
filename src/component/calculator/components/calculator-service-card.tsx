@@ -32,14 +32,14 @@ const CalculatorServiceCard: FC<Props> = ({
   return (
     <div
       onClick={onClick}
-      className={`shadow-section flex cursor-pointer flex-col gap-y-4 rounded-lg bg-neutral-50 px-8 py-12 transition-all ${
-        isSelected ? "border-2 border-blue-700" : ""
+      className={`shadow-section flex cursor-pointer flex-col gap-y-4 rounded-lg border-2 bg-neutral-50 px-8 py-12 transition-all ${
+        isSelected ? "border-blue-700" : "border-transparent"
       }`}
     >
       <img src={imageURL} alt={imageAlt} className="h-[140px] select-none" />
       <div className="flex w-full flex-col items-center justify-center gap-y-2">
         <span
-          className={`text-2xl font-bold transition-all ${
+          className={`select-none text-2xl font-bold transition-all ${
             isSelected ? "text-blue-700" : "text-slate-700"
           }`}
         >
