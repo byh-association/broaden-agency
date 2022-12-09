@@ -5,7 +5,7 @@ export const getHeaderColorScheme = (isDark?: boolean) => {
       bgColor: "bg-gray-900",
       borderColor: "border-neutral-50",
       button: {
-        textColor: "text-blue-700",
+        textColor: "text-gray-900",
         bgColor: "bg-neutral-50",
       },
     };

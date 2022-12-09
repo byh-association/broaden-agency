@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-neutral-50;
+}
+
 @layer components {
   .icon-btn {
     @apply flex h-10 w-10 items-center justify-center rounded-lg p-1;
@@ -23,6 +33,12 @@
   }
   .shadow-section {
     @apply drop-shadow-[0_4px_30px_rgba(17,24,39,0.1)];
+  }
+  .shadow-input {
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.4);
+  }
+  .shadow-input-focus {
+    box-shadow: 0px 0px 10px rgba(57, 127, 240, 0.2), inset 0px 0px 3px #377ae6;
   }
   .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
@@ -55,14 +71,4 @@
   .hero-section-gradient {
     @apply bg-gradient-to-b from-gray-900 to-[#1B2230];
   }
-}
-
-body {
-  @apply bg-neutral-50;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }

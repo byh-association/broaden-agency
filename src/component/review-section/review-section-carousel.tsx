@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "preact/hooks";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { reviewsData } from "./data";
 import ReviewCard from "./review-card";

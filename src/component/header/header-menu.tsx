@@ -1,6 +1,6 @@
-import type { FunctionalComponent } from "preact";
-import { useEffect, useState } from "preact/hooks";
-import type { JSXInternal } from "preact/src/jsx";
+import type { FC } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 import { HeaderNavigation } from "./header-navigation";
 import { getHeaderColorScheme } from "./helpers/get-header-color-scheme";
@@ -9,7 +9,7 @@ interface Props {
   isDark?: boolean;
 }
 
-const HeaderMenu: FunctionalComponent<Props> = ({ isDark }) => {
+const HeaderMenu: FC<Props> = ({ isDark }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { textColor } = getHeaderColorScheme(isDark);
 
@@ -59,9 +59,7 @@ const HeaderMenu: FunctionalComponent<Props> = ({ isDark }) => {
   );
 };
 
-const MenuIcon: FunctionalComponent<
-  JSXInternal.SVGAttributes<SVGSVGElement>
-> = (props) => (
+const MenuIcon: FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     {...props}
     xmlns="http://www.w3.org/2000/svg"

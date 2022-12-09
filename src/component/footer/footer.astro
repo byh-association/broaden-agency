@@ -27,7 +27,10 @@ const { bgColor, textColor } = isDark
       <div
         class={`flex w-full mb-9 md:mb-0 flex-col md:flex-row items-center justify-between ${textColor}`}
       >
-        <span class={`${textColor} hidden md:inline`}>Logo</span>
+        <img
+          src={`logos/${isDark ? "dark.svg" : "light.svg"}`}
+          class={`h-3 hidden md:inline`}
+        />
         <div class="flex space-x-8 md:space-x-3">
           <FooterLink isDark={isDark} inNewTab href="https://facebook.com">
             <img

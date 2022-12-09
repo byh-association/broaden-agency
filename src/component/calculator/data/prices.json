@@ -1,0 +1,21 @@
+{
+  "landing": {
+    "base": 40,
+    "page": 20,
+    "section": 15
+  },
+  "api": 500,
+  "web": 1000,
+  "mobile": 1500,
+  "marketing": 300,
+  "design": {
+    "web": 300,
+    "mobile": 300,
+    "landing": {
+      "page": 40,
+      "section": 35,
+      "web": 200,
+      "mobile": 200
+    }
+  }
+}
