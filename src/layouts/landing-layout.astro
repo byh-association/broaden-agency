@@ -39,7 +39,7 @@ const {
     <meta name="keywords" content={tags.join(", ")} />
     <title>{title}</title>
   </head>
-  <body class={`${withVerticalGap && "space-y-8 sm:space-y-24"}`}>
+  <body class={`${withVerticalGap && "space-y-12 sm:space-y-24"}`}>
     <Header isDark={isHeaderDark} />
     <slot />
     {withFooter && <Footer isDark={isFooterDark} />}

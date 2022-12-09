@@ -29,7 +29,8 @@ const { bgColor, textColor } = isDark
       >
         <img
           src={`logos/${isDark ? "dark.svg" : "light.svg"}`}
-          class={`h-3 hidden md:inline`}
+          class="h-3 hidden md:inline"
+          alt="Broadency logo"
         />
         <div class="flex space-x-8 md:space-x-3">
           <FooterLink isDark={isDark} inNewTab href="https://facebook.com">
@@ -78,7 +79,13 @@ const { bgColor, textColor } = isDark
             >Terms of Use</FooterLink
           >
         </div>
-        <span class={`${textColor} inline md:hidden`}>Logo</span>
+        <span class={`${textColor} inline md:hidden`}>
+          <img
+            src={`logos/${isDark ? "dark.svg" : "light.svg"}`}
+            class="h-4"
+            alt="Broadency logo"
+          />
+        </span>
       </div>
     </div>
   </Container>
