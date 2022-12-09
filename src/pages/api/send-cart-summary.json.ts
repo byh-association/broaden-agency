@@ -39,6 +39,8 @@ export const post: APIRoute = async (ctx) => {
     });
   }
 
+  // TODO: Add sending email on company email address
+
   return new Response(
     JSON.stringify({
       message: "The email have successfully sent",

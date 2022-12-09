@@ -9,6 +9,7 @@ import { useCartPrice } from "./hooks/use-cart-price";
 import ContactForm from "./steps/contact";
 import CalculatorQuestionsStep from "./steps/questions";
 import CalculatorServicesStep from "./steps/services";
+import SuccessStep from "./steps/success";
 
 export type Step = "services" | "quiz" | "contact" | "success";
 
@@ -99,6 +100,7 @@ const CalculatorForm = () => {
               <CalculatorCart items={items} totalPrice={totalPrice} />
             </div>
           )}
+          {step === "success" && <SuccessStep />}
         </form>
       </FormProvider>
     </div>
