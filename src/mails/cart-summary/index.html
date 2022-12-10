@@ -31,15 +31,6 @@
         font-family: "Noto Sans";
       }
 
-      .justify {
-        text-align: justify;
-      }
-      .justify::after {
-        content: "";
-        width: 100%;
-        display: inline-block;
-      }
-
       .main-table {
         padding: 48px 24px;
         background-color: #fafafa;
@@ -83,6 +74,10 @@
         padding: 12px;
         margin: 0 auto 24px;
       }
+      .cart-items-wrapper {
+        width: 100%;
+        margin-bottom: 12px;
+      }
       .cart-item-wrapper {
         width: 100%;
         padding: 12px;
@@ -90,9 +85,13 @@
       }
       .cart-item-left {
         display: inline-block;
+        width: 69%;
       }
       .cart-item-right {
         display: inline-block;
+        width: 29%;
+        text-align: right;
+        transform: translateY(-8px);
       }
       .cart-item-title {
         font-size: 16px;
@@ -117,11 +116,24 @@
         font-weight: 500;
         display: inline-block;
       }
+      .cart-total {
+        width: 100%;
+        text-align: center;
+        color: #334155;
+        font-size: 12px;
+        line-height: 16px;
+      }
+      .cart-total > span {
+        color: #1d4ed8;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+      }
       .contact-wrapper {
         margin-bottom: 24px;
         max-width: 363px;
         width: 100%;
-        margin: 0 auto;
+        margin: 0 auto 24px;
       }
       .contact-description {
         width: 100%;
@@ -138,6 +150,45 @@
         color: #1d4ed8;
         width: 100%;
         text-align: center;
+      }
+      footer {
+        margin: 0 auto;
+        text-align: center;
+      }
+      .footer-title {
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 12px;
+        color: #334155;
+      }
+      .footer-social-items {
+        margin-bottom: 16px;
+      }
+      .footer-social-items > a {
+        text-decoration: none;
+      }
+      .footer-social-items > a + a {
+        margin-left: 12px;
+      }
+      .footer-logo {
+        width: 96px;
+        margin-bottom: 16px;
+      }
+      .footer-copyright {
+        font-size: 12px;
+        line-height: 16px;
+        color: #334155;
+        margin-bottom: 16px;
+      }
+      .footer-link {
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        color: #334155;
+      }
+      .footer-link + .footer-link {
+        margin-left: 24px;
       }
     </style>
   </head>
@@ -166,21 +217,25 @@
       <tr>
         <td>
           <div class="cart-wrapper">
-            <!-- item -->
-            <div class="cart-item-wrapper justify">
-              <!-- item's left part -->
-              <div class="cart-item-left">
-                <p class="cart-item-title">Landing page</p>
-                <p class="cart-item-description">
-                  with 4 pages and 12 sections
-                </p>
-              </div>
-              <!-- item's right part -->
-              <div class="cart-item-right">
-                <span class="cart-item-price-prefix">approx.</span>
-                <span class="cart-item-price">$540</span>
+            <div class="cart-items-wrapper">
+              <!-- item -->
+              <div class="cart-item-wrapper">
+                <!-- item's left part -->
+                <div class="cart-item-left">
+                  <p class="cart-item-title">Landing page</p>
+                  <p class="cart-item-description">
+                    with 4 pages and 12 sections
+                  </p>
+                </div>
+                <!-- item's right part -->
+                <div class="cart-item-right">
+                  <span class="cart-item-price-prefix">approx.</span>
+                  <span class="cart-item-price">$540</span>
+                </div>
               </div>
             </div>
+            <!-- Cart total -->
+            <p class="cart-total">Estimated total from <span>$3240</span></p>
           </div>
         </td>
       </tr>
@@ -208,6 +263,59 @@
             </p>
             <p class="contact-email">info@broadency.com</p>
           </div>
+        </td>
+      </tr>
+
+      <!-- Footer -->
+      <tr>
+        <td>
+          <footer>
+            <p class="footer-title">Get social. Follow us on:</p>
+            <!-- Social profile links -->
+            <div class="footer-social-items">
+              <a href="https://facebook.com" target="_blank">
+                <img
+                  src="../../../public/icons/default-facebook.svg"
+                  alt="Facebook logo"
+                />
+              </a>
+              <a href="https://instagram.com" target="_blank">
+                <img
+                  src="../../../public/icons/default-instagram.svg"
+                  alt="Instagram logo"
+                />
+              </a>
+              <a href="https://linkedin.com" target="_blank">
+                <img
+                  src="../../../public/icons/default-linkedin.svg"
+                  alt="LinkedIn logo"
+                />
+              </a>
+              <a href="https://twitter.com" target="_blank">
+                <img
+                  src="../../../public/icons/default-twitter.svg"
+                  alt="Twitter logo"
+                />
+              </a>
+            </div>
+            <img
+              src="../../../public/logos/light.svg"
+              alt="Broadency logo"
+              class="footer-logo"
+            />
+            <p class="footer-copyright">
+              Copyright © 2022 Broaden Association. All rights reserved.
+            </p>
+            <div>
+              <a class="footer-link" href="https://broadency.com/#faq">FAQ</a>
+              <a class="footer-link" href="https://broadency.com/privacy-policy"
+                >Privacy Policy</a
+              >
+              <a class="footer-link" href="https://broadency.com/terms-of-use"
+                >Terms of Use</a
+              >
+            </div>
+          </footer>
         </td>
       </tr>
     </table>
