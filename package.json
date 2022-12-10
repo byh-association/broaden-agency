@@ -24,6 +24,7 @@
     "astro-heroicons": "^0.3.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "nodemailer": "^6.8.0",
+    "nodemailer-express-handlebars": "^5.0.0",
     "nodemailer-react": "^1.0.2",
     "react": "^18.0.0",
     "react-dom": "^18.2.0",

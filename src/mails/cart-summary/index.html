@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Noto Sans font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      span,
+      a {
+        font-family: "Noto Sans";
+      }
+
+      .justify {
+        text-align: justify;
+      }
+      .justify::after {
+        content: "";
+        width: 100%;
+        display: inline-block;
+      }
+
+      .main-table {
+        padding: 48px 24px;
+        background-color: #fafafa;
+        width: 600px;
+      }
+
+      .main-row {
+        width: 100%;
+      }
+
+      header {
+        margin: 0 auto 24px;
+        width: 124px;
+      }
+      .header-logo {
+        width: 124px;
+      }
+      .main-title {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 24px;
+        color: #334155;
+      }
+      .description {
+        font-size: 16px;
+        line-height: 24px;
+        color: #334155;
+        text-align: center;
+        max-width: 418px;
+        width: 100%;
+        margin: 0 auto 24px;
+      }
+      .cart-wrapper {
+        background: #fafafa;
+        box-shadow: 0px 4px 30px rgba(17, 24, 39, 0.1);
+        border-radius: 6px;
+        max-width: 414px;
+        width: 100%;
+        padding: 12px;
+        margin: 0 auto 24px;
+      }
+      .cart-item-wrapper {
+        width: 100%;
+        padding: 12px;
+        display: inline-block;
+      }
+      .cart-item-left {
+        display: inline-block;
+      }
+      .cart-item-right {
+        display: inline-block;
+      }
+      .cart-item-title {
+        font-size: 16px;
+        line-height: 24px;
+        color: #334155;
+      }
+      .cart-item-description {
+        font-size: 12px;
+        line-height: 16px;
+        color: #94a3b8;
+      }
+      .cart-item-price-prefix {
+        font-size: 12px;
+        line-height: 16px;
+        color: #94a3b8;
+        display: inline-block;
+      }
+      .cart-item-price {
+        font-size: 16px;
+        line-height: 24px;
+        color: #1d4ed8;
+        font-weight: 500;
+        display: inline-block;
+      }
+      .contact-wrapper {
+        margin-bottom: 24px;
+        max-width: 363px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .contact-description {
+        width: 100%;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+        color: #94a3b8;
+        margin-bottom: 12px;
+      }
+      .contact-email {
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 700;
+        color: #1d4ed8;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <table class="main-table">
+      <!-- Header Logo -->
+      <tr class="main-row">
+        <td>
+          <header>
+            <img
+              src="../../../public/logos/light.svg"
+              alt="Broadency logo"
+              class="header-logo"
+            />
+          </header>
+        </td>
+      </tr>
+      <!-- Title -->
+      <tr class="main-row">
+        <td>
+          <h1 class="main-title">Thanks for contacting us!</h1>
+        </td>
+      </tr>
+
+      <!-- Cart table -->
+      <tr>
+        <td>
+          <div class="cart-wrapper">
+            <!-- item -->
+            <div class="cart-item-wrapper justify">
+              <!-- item's left part -->
+              <div class="cart-item-left">
+                <p class="cart-item-title">Landing page</p>
+                <p class="cart-item-description">
+                  with 4 pages and 12 sections
+                </p>
+              </div>
+              <!-- item's right part -->
+              <div class="cart-item-right">
+                <span class="cart-item-price-prefix">approx.</span>
+                <span class="cart-item-price">$540</span>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- Description -->
+      <tr class="main-row">
+        <td>
+          <p class="description">
+            We will promptly process your order and provide a thorough response
+            to your inquiry as soon as possible. We appreciate your business and
+            look forward to serving you.
+          </p>
+        </td>
+      </tr>
+
+      <!-- Contact us block -->
+      <tr>
+        <td>
+          <div class="contact-wrapper">
+            <p class="contact-description">
+              If you have any questions or concerns, please do not hesitate to
+              contact us. We are more than happy to assist you and provide any
+              information you may need. Please feel free to ask us anything, and
+              we will do our best to help.
+            </p>
+            <p class="contact-email">info@broadency.com</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
