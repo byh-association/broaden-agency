@@ -3,6 +3,8 @@ import nodemailer from "nodemailer";
 import type { Options as TransportOptions } from "nodemailer/lib/smtp-transport";
 import type { ReactElement } from "react";
 
+import { config } from "../config";
+
 const transport: TransportOptions = {
   host: import.meta.env.MAILER_SMTP_HOST,
   port: Number(import.meta.env.MAILER_SMTP_PORT),
@@ -13,7 +15,7 @@ const transport: TransportOptions = {
 };
 
 const defaults: SendMailOptions = {
-  from: "info@broadency.com",
+  from: config.companyMail,
 };
 
 export type Email<T = object> = (props: T) => {

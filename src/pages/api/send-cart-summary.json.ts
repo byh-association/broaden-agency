@@ -5,6 +5,7 @@ import path from "path";
 
 import type { Form } from "../../component/calculator";
 import type { CartItemProps } from "../../component/calculator/components/cart-item";
+import { config } from "../../config";
 import { mailer } from "../../utils/mailer";
 
 export interface SendCartSummaryDTO {
@@ -22,6 +23,7 @@ export interface SendCartSummaryDTO {
 export const post: APIRoute = async (ctx) => {
   const body = (await ctx.request.json()) as SendCartSummaryDTO;
   const clientEmail = body.contacts.email;
+  const currentYear = new Date().getFullYear();
 
   if (!body || !clientEmail) {
     return new Response(null, {
@@ -30,14 +32,13 @@ export const post: APIRoute = async (ctx) => {
     });
   }
 
-  const template = fs.readFileSync(
+  const clientTemplate = fs.readFileSync(
     path.join(path.resolve(), "/src/mails/cart-summary-client.hbs"),
     "utf8"
   );
-
-  const clientMailTemplate = Handlebars.compile(template);
+  const clientMailTemplate = Handlebars.compile(clientTemplate);
   const clientMailHTML = clientMailTemplate({
-    year: new Date().getFullYear(),
+    year: currentYear,
     totalCartPrice: body.cart.summary,
     items: body.cart.items,
   });
@@ -51,11 +52,34 @@ export const post: APIRoute = async (ctx) => {
   if (!clientResult.accepted.includes(clientEmail)) {
     return new Response(null, {
       status: 500,
-      statusText: "Something went wrong sending email",
+      statusText: "Something went wrong sending email to the client",
     });
   }
 
-  // TODO: Add sending email on company email address
+  const companyTemplate = fs.readFileSync(
+    path.join(path.resolve(), "/src/mails/cart-summary-company.hbs"),
+    "utf8"
+  );
+  const companyMailTemplate = Handlebars.compile(companyTemplate);
+  const companyMailHTML = companyMailTemplate({
+    year: currentYear,
+    totalCartPrice: body.cart.summary,
+    items: body.cart.items,
+    contacts: body.contacts,
+  });
+
+  const companyResult = await mailer.sendMail({
+    to: config.companyMail,
+    html: companyMailHTML,
+    subject: `You have new order from "${body.contacts.firstName} ${body.contacts.lastName}" | BROADENCY`,
+  });
+
+  if (!companyResult.accepted.includes(config.companyMail)) {
+    return new Response(null, {
+      status: 500,
+      statusText: "Something went wrong sending email to the company address",
+    });
+  }
 
   return new Response(
     JSON.stringify({
