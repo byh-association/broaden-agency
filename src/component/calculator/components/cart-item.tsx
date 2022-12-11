@@ -3,12 +3,14 @@ import type { FC } from "react";
 export interface CartItemProps {
   title: string;
   description: string;
+  costPrefix: "approx." | "from";
   cost: number;
 }
 
 const CalculatorCartItem: FC<CartItemProps> = ({
   title,
   description,
+  costPrefix,
   cost,
 }) => {
   return (
@@ -17,7 +19,10 @@ const CalculatorCartItem: FC<CartItemProps> = ({
         <p className="font-medium text-slate-700">{title}</p>
         <span className="text-xs text-slate-400">{description}</span>
       </div>
-      <p className="font-medium text-slate-400">${cost}</p>
+      <p className="text-right text-xs text-slate-400">
+        {costPrefix}{" "}
+        <span className="text-base font-medium text-blue-700">${cost}</span>
+      </p>
     </div>
   );
 };

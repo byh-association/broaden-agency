@@ -42,9 +42,9 @@ const CalculatorCart: FC<Props> = ({ items, totalPrice }) => {
             <div className="flex w-full justify-between rounded-bl-md rounded-br-md bg-zinc-200 p-4">
               <p className="font-medium text-slate-700">Estimated total</p>
               <div className="flex flex-col items-end pt-[5px]">
-                <span className="text-xs uppercase">From</span>
+                <span className="text-xs uppercase">{totalPrice.prefix}</span>
                 <span className="gradient-pink-purple bg-clip-text font-bold text-transparent">
-                  {totalPrice}
+                  ${totalPrice.number}
                 </span>
               </div>
             </div>

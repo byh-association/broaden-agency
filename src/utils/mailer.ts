@@ -1,9 +1,9 @@
 import type { SendMailOptions } from "nodemailer";
+import nodemailer from "nodemailer";
 import type { Options as TransportOptions } from "nodemailer/lib/smtp-transport";
-import Mailer from "nodemailer-react";
 import type { ReactElement } from "react";
 
-import CartSummaryEmail from "../mails/cart-summary";
+import { config } from "../config";
 
 const transport: TransportOptions = {
   host: import.meta.env.MAILER_SMTP_HOST,
@@ -15,7 +15,7 @@ const transport: TransportOptions = {
 };
 
 const defaults: SendMailOptions = {
-  from: "info@broadency.com",
+  from: config.companyMail,
 };
 
 export type Email<T = object> = (props: T) => {
@@ -23,10 +23,4 @@ export type Email<T = object> = (props: T) => {
   body: ReactElement;
 };
 
-export const mailer = Mailer(
-  {
-    transport,
-    defaults,
-  },
-  { "cart-summary": CartSummaryEmail }
-);
+export const mailer = nodemailer.createTransport(transport, defaults);
