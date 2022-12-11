@@ -11,7 +11,10 @@ export interface SendCartSummaryDTO {
   contacts: Form["contacts"];
   cart: {
     items: CartItemProps[];
-    summary: string;
+    summary: {
+      prefix: CartItemProps["costPrefix"];
+      number: number;
+    };
   };
   questions: Form["questions"][keyof Form["questions"]][];
 }

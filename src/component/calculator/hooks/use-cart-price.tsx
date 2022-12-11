@@ -24,6 +24,7 @@ export const useCartPrice = (props: Props) => {
           result.push({
             title: "API",
             description: "for the applications",
+            costPrefix: "from",
             cost: prices.api,
           });
           break;
@@ -32,6 +33,7 @@ export const useCartPrice = (props: Props) => {
           result.push({
             title: "Mobile application",
             description: "for IOS, Android",
+            costPrefix: "from",
             cost: prices.mobile,
           });
           break;
@@ -40,6 +42,7 @@ export const useCartPrice = (props: Props) => {
           result.push({
             title: "Web application",
             description: "with mobile adaptive layout",
+            costPrefix: "from",
             cost: prices.web,
           });
           break;
@@ -48,6 +51,7 @@ export const useCartPrice = (props: Props) => {
           result.push({
             title: "Marketing and promotion",
             description: "with SEO and content making",
+            costPrefix: "from",
             cost: prices.marketing,
           });
           break;
@@ -79,6 +83,7 @@ export const useCartPrice = (props: Props) => {
       result.push({
         title: "Landing page",
         description: `with ${pageSpelling} pages and ${sectionSpelling}`,
+        costPrefix: "approx.",
         cost:
           pageCount * prices.landing.page +
           sectionCount * prices.landing.section,
@@ -113,6 +118,7 @@ export const useCartPrice = (props: Props) => {
         result.push({
           title: "Design",
           description: `for ${designFor.join(", ")}`,
+          costPrefix: "approx.",
           cost,
         });
       }
@@ -120,11 +126,19 @@ export const useCartPrice = (props: Props) => {
     return result;
   }, [questions, services]);
 
+  const numberPrice: number =
+    items.length > 0 ? items.map((i) => i.cost).reduce((acc, v) => acc + v) : 0;
+  const pricePrefix: CartItemProps["costPrefix"] = items.some(
+    (i) => i.costPrefix === "from"
+  )
+    ? "from"
+    : "approx.";
+
   return {
     items,
-    totalPrice:
-      items.length > 0
-        ? `$${items.map((i) => i.cost).reduce((acc, v) => acc + v)}`
-        : "$0",
+    totalPrice: {
+      prefix: pricePrefix,
+      number: numberPrice,
+    },
   };
 };

@@ -14,16 +14,16 @@
 
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; } p, h1, h2, h3, h4,
-      h5, h6, span, a { font-family: 'Noto Sans', 'Open Sans', Verdana,
-      sans-serif; } .main-table { padding: 48px 24px; background-color: #fafafa;
-      width: 600px; } .main-row { width: 100%; } header { margin: 0 auto 24px;
-      width: 124px; } .header-logo { width: 124px; } .main-title { font-size:
-      24px; line-height: 32px; font-weight: 700; text-align: center;
+      h5, h6, span, a { font-family: 'Noto Sans', 'Open Sans', 'Roboto',
+      Verdana, sans-serif; } .main-table { padding: 48px 24px; background-color:
+      #fafafa; width: 600px; } .main-row { width: 100%; } header { margin: 0
+      auto 24px; width: 124px; } .header-logo { width: 124px; } .main-title {
+      font-size: 24px; line-height: 32px; font-weight: 700; text-align: center;
       margin-bottom: 24px; color: #334155; } .description { font-size: 16px;
       line-height: 24px; color: #334155; text-align: center; max-width: 418px;
-      width: 100%; margin: 0 auto 24px; } .cart-wrapper { background: #fafafa;
-      box-shadow: 0px 4px 30px rgba(17, 24, 39, 0.1); border-radius: 6px;
-      max-width: 414px; width: 100%; padding: 12px; margin: 0 auto 24px; }
+      width: 100%; margin: 0 auto 24px; } .cart-wrapper { background-color:
+      #fafafa; box-shadow: 0px 4px 30px rgba(17, 24, 39, 0.1); border-radius:
+      6px; max-width: 414px; width: 100%; padding: 12px; margin: 0 auto 24px; }
       .cart-items-wrapper { width: 100%; margin-bottom: 12px; }
       .cart-item-wrapper { width: 100%; padding: 12px; display: inline-block; }
       .cart-item-left { display: inline-block; width: 69%; } .cart-item-right {
@@ -59,7 +59,7 @@
         <td>
           <header>
             <img
-              src="../../../public/logos/light.svg"
+              src="../../../public/logos/light.png"
               alt="Broadency logo"
               class="header-logo"
             />
@@ -90,15 +90,18 @@
                   </div>
                   <!-- item's right part -->
                   <div class="cart-item-right">
-                    <span class="cart-item-price-prefix">approx.</span>
-                    <span class="cart-item-price">{{this.cost}}</span>
+                    <span
+                      class="cart-item-price-prefix"
+                    >{{this.costPrefix}}</span>
+                    <span class="cart-item-price">${{this.cost}}</span>
                   </div>
                 </div>
               {{/each}}
             </div>
             <!-- Cart total -->
-            <p class="cart-total">Estimated total from
-              <span>{{totalCartPrice}}</span></p>
+            <p class="cart-total">Estimated total is
+              {{totalCartPrice.prefix}}
+              <span>${{totalCartPrice.number}}</span></p>
           </div>
         </td>
       </tr>
@@ -138,31 +141,31 @@
             <div class="footer-social-items">
               <a href="https://facebook.com" target="_blank">
                 <img
-                  src="https://www.broadency.com/icons/default-facebook.svg"
+                  src="https://www.broadency.com/icons/default-facebook.png"
                   alt="Facebook"
                 />
               </a>
               <a href="https://instagram.com" target="_blank">
                 <img
-                  src="https://www.broadency.com/icons/default-instagram.svg"
+                  src="https://www.broadency.com/icons/default-instagram.png"
                   alt="Instagram"
                 />
               </a>
               <a href="https://linkedin.com" target="_blank">
                 <img
-                  src="https://www.broadency.com/icons/default-linkedin.svg"
+                  src="https://www.broadency.com/icons/default-linkedin.png"
                   alt="LinkedIn"
                 />
               </a>
               <a href="https://twitter.com" target="_blank">
                 <img
-                  src="https://www.broadency.com/icons/default-twitter.svg"
+                  src="https://www.broadency.com/icons/default-twitter.png"
                   alt="Twitter"
                 />
               </a>
             </div>
             <img
-              src="../../../public/logos/light.svg"
+              src="../../../public/logos/light.png"
               alt="Broadency logo"
               class="footer-logo"
             />
