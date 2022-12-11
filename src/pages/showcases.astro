@@ -2,10 +2,12 @@
 import Container from "../component/container.astro";
 import ShowcaseCard from "../component/showcase-card/showcase-card.astro";
 import LandingLayout from "../layouts/landing-layout.astro";
+import { TAGS as BASETAGS } from "./index.astro";
 
-const DESCRIPTION = "Showcase of the {NAME OF THE BRAND}";
-const TAGS = ["agency", "service", "landing", "showcase"];
-const TITLE = "Broaden agency showcase";
+const DESCRIPTION =
+  "Broadency is a software agency that specializes in creating innovative and user-friendly web and mobile applications. Visit our showcase page to see some of our featured projects and learn more about our services.";
+const TAGS = [...BASETAGS, "showcase", "portfolio"];
+const TITLE = "Broadency | Showcase of Our Software Agency";
 
 export interface ShowcaseCardType {
   projectPreview: string;

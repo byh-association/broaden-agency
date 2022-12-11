@@ -2,11 +2,19 @@
 import LandingLayout from "../layouts/landing-layout.astro";
 import Container from "../component/container.astro";
 import CalculatorForm from "../component/calculator";
+import { TAGS as BASETAGS } from "./index.astro";
 
 const DESCRIPTION =
-  "The project calculator helps you estimate your project's approximate price without contacting us. Notice, if you have selected any kind of application (web, mobile) - we cannot define the final price on the calculator step.";
-const TAGS = ["agency", "service", "landing"];
-const TITLE = "Estimate your project";
+  "UGet a quick and accurate estimate for your software project with Broadency's easy-to-use price calculator. Contact us today for more information.";
+const TAGS = [
+  ...BASETAGS,
+  "estimate price",
+  "calculator",
+  "easy-to-use",
+  "personalized",
+  "contact",
+];
+const TITLE = "Broadency | Estimate Price Calculator";
 ---
 
 <LandingLayout withFooter description={DESCRIPTION} tags={TAGS} title={TITLE}>
