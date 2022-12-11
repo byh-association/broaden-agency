@@ -1,4 +1,4 @@
-import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import PaperAirplaneIcon from "@heroicons/react/24/outline/PaperAirplaneIcon";
 import type { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
