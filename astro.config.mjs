@@ -16,4 +16,16 @@ export default defineConfig({
       ? "https://broadency.com"
       : "http://localhost:3000",
   adapter: vercel(),
+  vite: {
+    build: {
+      // workaround bug "index" file
+      // @link https://github.com/withastro/astro/issues/3805
+      rollupOptions: {
+        output: {
+          entryFileNames: "entry.[hash].js",
+          chunkFileNames: "chunks/chunk.[hash].js",
+        },
+      },
+    },
+  },
 });
