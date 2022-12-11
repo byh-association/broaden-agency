@@ -11,10 +11,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   output: "server",
   integrations: [tailwind(), react()],
-  site:
-    import.meta.env.NODE_ENV === "production"
-      ? "https://broadency.com"
-      : "http://localhost:3000",
+  site: "https://broadency.com",
   adapter: vercel(),
   vite: {
     build: {
