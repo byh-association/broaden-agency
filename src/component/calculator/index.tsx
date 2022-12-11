@@ -1,11 +1,12 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import type { SendCartSummaryDTO } from "../../pages/api/send-cart-summary.json";
+import type { SendCartSummaryDTO } from "../../pages/api/send-cart-summary";
 import type { CalculatorService } from "./components/calculator-service-card";
 import CalculatorCart from "./components/cart";
 import type { CalculatorQuestion, CalculatorQuestionID } from "./data/data";
 import { useCartPrice } from "./hooks/use-cart-price";
+import { useSendCartSummaryMail } from "./hooks/use-send-cart-summary-mail";
 import ContactForm from "./steps/contact";
 import CalculatorQuestionsStep from "./steps/questions";
 import CalculatorServicesStep from "./steps/services";
@@ -42,37 +43,28 @@ const CalculatorForm = () => {
   const methods = useForm<Form>({
     defaultValues: calculatorDefaultFormValues,
   });
+  const [sendEmail, { data, isSuccess, isLoading, error }] =
+    useSendCartSummaryMail();
 
   const { items, totalPrice } = useCartPrice({
     control: methods.control,
   });
 
+  useEffect(() => {
+    if (!!data && isSuccess) {
+      setStep("success");
+    }
+  }, [data, isSuccess]);
+
   const onSubmit = useCallback(
     async (data: Form) => {
-      const dto: SendCartSummaryDTO = {
-        contacts: data.contacts,
-        cart: {
-          items,
-          summary: totalPrice,
-        },
-        questions: Object.values(data.questions),
-      };
-      const result = await fetch(
-        `${import.meta.env.SITE}api/send-cart-summary.json`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dto),
-        }
-      );
-      if (result.ok) {
-        setStep("success");
-      }
-      return;
+      sendEmail({
+        cartItems: items,
+        form: data,
+        totalPrice,
+      });
     },
-    [items, totalPrice]
+    [items, sendEmail, totalPrice]
   );
 
   return (
@@ -95,7 +87,13 @@ const CalculatorForm = () => {
                 {step === "quiz" && (
                   <CalculatorQuestionsStep setStep={setStep} />
                 )}
-                {step === "contact" && <ContactForm setStep={setStep} />}
+                {step === "contact" && (
+                  <ContactForm
+                    setStep={setStep}
+                    isLoading={isLoading}
+                    errorMessage={error || ""}
+                  />
+                )}
               </div>
               <CalculatorCart items={items} totalPrice={totalPrice} />
             </div>

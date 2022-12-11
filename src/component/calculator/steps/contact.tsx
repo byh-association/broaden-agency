@@ -8,9 +8,11 @@ import type { Form, Step } from "..";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<Step>>;
+  isLoading: boolean;
+  errorMessage?: string;
 }
 
-const ContactForm: FC<Props> = ({ setStep }) => {
+const ContactForm: FC<Props> = ({ setStep, isLoading, errorMessage }) => {
   const { control } = useFormContext<Form>();
 
   return (
@@ -136,7 +138,7 @@ const ContactForm: FC<Props> = ({ setStep }) => {
 
       <div className="flex gap-x-6">
         {/* Buttons */}
-        <div className="flex gap-x-6">
+        <div className="flex items-center gap-x-6">
           <button
             className="btn bg-slate-400 text-neutral-50"
             onClick={() => setStep("quiz")}
@@ -144,13 +146,28 @@ const ContactForm: FC<Props> = ({ setStep }) => {
             Back
           </button>
           <button className="btn bg-blue-700 text-neutral-50" type="submit">
-            Send
-            <PaperAirplaneIcon
-              width={20}
-              height={20}
-              className="text-neutral-50"
-            />
+            {!isLoading ? (
+              <>
+                Send
+                <PaperAirplaneIcon
+                  width={20}
+                  height={20}
+                  className="text-neutral-50"
+                />
+              </>
+            ) : (
+              <img
+                src="/icons/loader-static.svg"
+                alt="Loader"
+                className="h-5 w-5 animate-spin"
+              />
+            )}
           </button>
+          {errorMessage && (
+            <p className="text-red-600">
+              Something went wrong sending the email
+            </p>
+          )}
         </div>
       </div>
     </div>
