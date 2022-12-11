@@ -27,7 +27,7 @@ const { bgColor, textColor } = getHeaderColorScheme(isDark);
       <div class="hidden items-center space-x-4 sm:flex">
         <HeaderNavigation isDark={isDark} />
       </div>
-      <HeaderMenu client:load isDark={isDark} />
+      <HeaderMenu client:visible isDark={isDark} />
     </div>
   </Container>
 </header>
